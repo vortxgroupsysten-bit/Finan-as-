@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Minha Meta Financeira</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#0f172a;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:25px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+}
+
+header p{
+    margin-top:7px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.mes{
+    background:white;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:18px;
+    box-shadow:0 3px 10px #0000000c;
+}
+
+.mes input{
+    margin-top:7px;
+    padding:11px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 3px 12px #0000000c;
+}
+
+.card span{
+    color:#64748b;
+    font-size:13px;
+}
+
+.card h2{
+    margin-top:8px;
+    font-size:22px;
+}
+
+.verde{color:#16a34a}
+.vermelho{color:#dc2626}
+.azul{color:#2563eb}
+.laranja{color:#ea580c}
+
+.meta{
+    background:#111827;
+    color:white;
+    margin:20px 0;
+    padding:25px;
+    border-radius:18px;
+}
+
+.meta small{
+    color:#cbd5e1;
+}
+
+.meta h2{
+    font-size:40px;
+    margin:8px 0;
+}
+
+.progress{
+    height:13px;
+    background:#374151;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress div{
+    height:100%;
+    width:0;
+    background:#22c55e;
+    transition:.4s;
+}
+
+.meta-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#d1d5db;
+}
+
+.tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:20px;
+}
+
+.tabs button{
+    border:0;
+    padding:12px 15px;
+    border-radius:9px;
+    background:white;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.tabs button.active{
+    background:#111827;
+    color:white;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    margin-bottom:18px;
+    box-shadow:0 3px 12px #0000000c;
+}
+
+.box h3{
+    margin-bottom:15px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#2563eb;
+}
+
+.btn{
+    border:0;
+    background:#2563eb;
+    color:white;
+    border-radius:9px;
+    padding:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.lista{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.item{
+    background:white;
+    padding:16px;
+    border-radius:13px;
+    box-shadow:0 2px 8px #0000000b;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.info strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.info small{
+    color:#64748b;
+}
+
+.valor{
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.acoes{
+    display:flex;
+    gap:6px;
+}
+
+.excluir{
+    border:0;
+    background:#fee2e2;
+    color:#dc2626;
+    padding:9px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.pagar{
+    border:0;
+    background:#dcfce7;
+    color:#15803d;
+    padding:9px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.vazio{
+    background:white;
+    padding:30px;
+    text-align:center;
+    color:#64748b;
+    border-radius:13px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+    font-size:13px;
+}
+
+.status{
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    background:#16a34a;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    font-size:12px;
+}
+
+@media(max-width:800px){
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:12px;
+    }
+
+    .cards{
+        gap:9px;
+    }
+
+    .card{
+        padding:14px;
+    }
+
+    .card h2{
+        font-size:18px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .item{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .acoes{
+        width:100%;
+    }
+
+    .acoes button{
+        flex:1;
+    }
+
+    .meta h2{
+        font-size:32px;
+    }
+
+    .meta-info{
+        flex-direction:column;
+        gap:5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💰 Minha Meta Financeira</h1>
+    <p>Descubra quanto precisa fazer por dia</p>
+</header>
+
+<div class="container">
+
+    <div class="mes">
+        <strong>📅 Mês de controle</strong><br>
+        <input type="month" id="mes">
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>🏠 Despesas fixas</span>
+            <h2 class="vermelho" id="fixasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>🧾 Despesas do mês</span>
+            <h2 class="laranja" id="diariasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>💳 Dívidas restantes</span>
+            <h2 class="vermelho" id="dividasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>💰 Entradas</span>
+            <h2 class="verde" id="entradasTotal">R$ 0,00</h2>
+        </div>
+
+    </div>
+
+    <div class="meta">
+
+        <small>🎯 VOCÊ PRECISA FAZER POR DIA</small>
+
+        <h2 id="meta">R$ 0,00</h2>
+
+        <div class="progress">
+            <div id="barra"></div>
+        </div>
+
+        <div class="meta-info">
+
+            <span id="conseguido">
+                Conseguido: R$ 0,00
+            </span>
+
+            <span id="faltando">
+                Falta: R$ 0,00
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="tabs">
+
+        <button class="active" onclick="aba('resumo',this)">
+            📊 Resumo
+        </button>
+
+        <button onclick="aba('entradas',this)">
+            💰 Entradas
+        </button>
+
+        <button onclick="aba('fixas',this)">
+            🏠 Fixas
+        </button>
+
+        <button onclick="aba('diarias',this)">
+            🧾 Despesas
+        </button>
+
+        <button onclick="aba('dividas',this)">
+            💳 Dívidas
+        </button>
+
+    </div>
+
+    <!-- RESUMO -->
+
+    <div id="resumo" class="section active">
+
+        <div class="box">
+
+            <h3>📊 Como está sua situação?</h3>
+
+            <p id="mensagem" style="line-height:1.7;color:#475569">
+                Adicione suas despesas e entradas para começar.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ENTRADAS -->
+
+    <div id="entradas" class="section">
+
+        <div class="box">
+
+            <h3>💰 Nova entrada</h3>
+
+            <div class="form">
+
+                <input
+                    id="entradaDescricao"
+                    placeholder="Descrição">
+
+                <input
+                    id="entradaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="entradaData"
+                    type="date">
+
+                <button class="btn" onclick="addEntrada()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaEntradas" class="lista"></div>
+
+    </div>
+
+    <!-- FIXAS -->
+
+    <div id="fixas" class="section">
+
+        <div class="box">
+
+            <h3>🏠 Nova despesa fixa</h3>
+
+            <div class="form">
+
+                <input
+                    id="fixaNome"
+                    placeholder="Ex: Aluguel">
+
+                <input
+                    id="fixaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="fixaVencimento"
+                    type="number"
+                    min="1"
+                    max="31"
+                    placeholder="Dia vencimento">
+
+                <button class="btn" onclick="addFixa()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaFixas" class="lista"></div>
+
+    </div>
+
+    <!-- DIÁRIAS -->
+
+    <div id="diarias" class="section">
+
+        <div class="box">
+
+            <h3>🧾 Nova despesa</h3>
+
+            <div class="form">
+
+                <input
+                    id="diariaDescricao"
+                    placeholder="Ex: Mercado">
+
+                <input
+                    id="diariaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="diariaData"
+                    type="date">
+
+                <select id="diariaCategoria">
+
+                    <option>Alimentação</option>
+                    <option>Mercado</option>
+                    <option>Combustível</option>
+                    <option>Transporte</option>
+                    <option>Casa</option>
+                    <option>Lazer</option>
+                    <option>Outros</option>
+
+                </select>
+
+                <button class="btn" onclick="addDiaria()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaDiarias" class="lista"></div>
+
+    </div>
+
+    <!-- DIVIDAS -->
+
+    <div id="dividas" class="section">
+
+        <div class="box">
+
+            <h3>💳 Nova dívida</h3>
+
+            <div class="form">
+
+                <input
+                    id="dividaNome"
+                    placeholder="Ex: Cartão">
+
+                <input
+                    id="dividaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor total">
+
+                <input
+                    id="dividaPago"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor já pago">
+
+                <input
+                    id="dividaVencimento"
+                    type="date">
+
+                <button class="btn" onclick="addDivida()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaDividas" class="lista"></div>
+
+    </div>
+
+</div>
+
+<footer>
+    Minha Meta Financeira © 2026
+</footer>
+
+<div class="status" id="status">
+    ☁️ Conectando...
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
+
+    authDomain: "financas-3ca07.firebaseapp.com",
+
+    projectId: "financas-3ca07",
+
+    storageBucket: "financas-3ca07.firebasestorage.app",
+
+    messagingSenderId: "1049971527541",
+
+    appId: "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
+
+    measurementId: "G-XB06NHKWFX"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/*
+    CAMINHO DO SEU SISTEMA
+
+    Como é uso pessoal e não existe login,
+    usamos um identificador fixo.
+*/
+
+const BASE = "usuarios/usuario-pessoal";
+
+
+const col = nome =>
+    collection(db,BASE,nome);
+
+
+let dados = {
+
+    entradas:[],
+    fixas:[],
+    diarias:[],
+    dividas:[]
+
+};
+
+
+/* MÊS */
+
+const mesInput =
+    document.getElementById("mes");
+
+const agora = new Date();
+
+mesInput.value =
+    agora.getFullYear()+"-"+
+    String(agora.getMonth()+1).padStart(2,"0");
+
+
+const hoje =
+    agora.toISOString().split("T")[0];
+
+document.getElementById("entradaData").value = hoje;
+document.getElementById("diariaData").value = hoje;
+
+
+/* STATUS */
+
+function status(texto,erro=false){
+
+    const el =
+        document.getElementById("status");
+
+    el.textContent = texto;
+
+    el.style.background =
+        erro ? "#dc2626" : "#16a34a";
+
+}
+
+
+/* MOEDA */
+
+function dinheiro(valor){
+
+    return Number(valor || 0)
+        .toLocaleString(
+            "pt-BR",
+            {
+                style:"currency",
+                currency:"BRL"
+            }
+        );
+
+}
+
+
+/* ABAS */
+
+window.aba = function(id,botao){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(x =>
+            x.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".tabs button")
+        .forEach(x =>
+            x.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    botao.classList.add("active");
+
+};
+
+
+/* ENTRADA */
+
+window.addEntrada = async function(){
+
+    const descricao =
+        document.getElementById(
+            "entradaDescricao"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "entradaValor"
+            ).value
+        );
+
+    const data =
+        document.getElementById(
+            "entradaData"
+        ).value;
+
+    if(!descricao || valor<=0 || !data){
+
+        alert("Preencha todos os campos.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("entradas"),
+            {
+                descricao,
+                valor,
+                data,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "entradaDescricao"
+        ).value="";
+
+        document.getElementById(
+            "entradaValor"
+        ).value="";
+
+        status("☁️ Entrada salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+        alert(
+            "Erro ao salvar. Verifique as regras do Firestore."
+        );
+
+    }
+
+};
+
+
+/* FIXA */
+
+window.addFixa = async function(){
+
+    const nome =
+        document.getElementById(
+            "fixaNome"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "fixaValor"
+            ).value
+        );
+
+    const vencimento =
+        document.getElementById(
+            "fixaVencimento"
+        ).value;
+
+    if(!nome || valor<=0){
+
+        alert("Informe nome e valor.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("fixas"),
+            {
+                nome,
+                valor,
+                vencimento,
+                pago:false,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "fixaNome"
+        ).value="";
+
+        document.getElementById(
+            "fixaValor"
+        ).value="";
+
+        document.getElementById(
+            "fixaVencimento"
+        ).value="";
+
+        status("☁️ Despesa fixa salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* DIÁRIA */
+
+window.addDiaria = async function(){
+
+    const descricao =
+        document.getElementById(
+            "diariaDescricao"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "diariaValor"
+            ).value
+        );
+
+    const data =
+        document.getElementById(
+            "diariaData"
+        ).value;
+
+    const categoria =
+        document.getElementById(
+            "diariaCategoria"
+        ).value;
+
+    if(!descricao || valor<=0 || !data){
+
+        alert("Preencha todos os campos.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("diarias"),
+            {
+                descricao,
+                valor,
+                data,
+                categoria,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "diariaDescricao"
+        ).value="";
+
+        document.getElementById(
+            "diariaValor"
+        ).value="";
+
+        status("☁️ Despesa salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* DÍVIDA */
+
+window.addDivida = async function(){
+
+    const nome =
+        document.getElementById(
+            "dividaNome"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "dividaValor"
+            ).value
+        );
+
+    const pago =
+        Number(
+            document.getElementById(
+                "dividaPago"
+            ).value
+        ) || 0;
+
+    const vencimento =
+        document.getElementById(
+            "dividaVencimento"
+        ).value;
+
+    if(!nome || valor<=0){
+
+        alert("Informe nome e valor.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("dividas"),
+            {
+                nome,
+                valor,
+                pago,
+                vencimento,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "dividaNome"
+        ).value="";
+
+        document.getElementById(
+            "dividaValor"
+        ).value="";
+
+        document.getElementById(
+            "dividaPago"
+        ).value="";
+
+        document.getElementById(
+            "dividaVencimento"
+        ).value="";
+
+        status("☁️ Dívida salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* EXCLUSÃO */
+
+window.excluir = async function(tipo,id){
+
+    if(!confirm("Deseja excluir este registro?"))
+        return;
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                BASE,
+                tipo,
+                id
+            )
+        );
+
+        status("🗑️ Registro excluído!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao excluir",true);
+
+    }
+
+};
+
+
+/* PAGAR FIXA */
+
+window.pagarFixa = async function(id,pago){
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                BASE,
+                "fixas",
+                id
+            ),
+            {
+                pago:!pago
+            }
+        );
+
+    }catch(e){
+
+        console.error(e);
+
+    }
+
+};
+
+
+/* PAGAR DÍVIDA */
+
+window.pagarDivida = async function(id,valorPago,valorTotal){
+
+    const valor =
+        Number(
+            prompt(
+                "Quanto deseja pagar?",
+                "0"
+            )
+        );
+
+    if(valor<=0)
+        return;
+
+    const novoValor =
+        Math.min(
+            valorPago+valor,
+            valorTotal
+        );
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                BASE,
+                "dividas",
+                id
+            ),
+            {
+                pago:novoValor
+            }
+        );
+
+    }catch(e){
+
+        console.error(e);
+
+    }
+
+};
+
+
+/* ESCUTAR FIRESTORE */
+
+function ouvir(tipo){
+
+    onSnapshot(
+        col(tipo),
+        snapshot=>{
+
+            dados[tipo] =
+                snapshot.docs.map(
+                    d=>({
+                        id:d.id,
+                        ...d.data()
+                    })
+                );
+
+            atualizar();
+
+            status("☁️ Sincronizado");
+
+        },
+        erro=>{
+
+            console.error(erro);
+
+            status(
+                "❌ Erro no Firestore",
+                true
+            );
+
+        }
+    );
+
+}
+
+
+ouvir("entradas");
+ouvir("fixas");
+ouvir("diarias");
+ouvir("dividas");
+
+
+/* ATUALIZAR */
+
+function atualizar(){
+
+    const mes =
+        mesInput.value;
+
+
+    const entradas =
+        dados.entradas
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(mes)
+        )
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const diarias =
+        dados.diarias
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(mes)
+        )
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const fixas =
+        dados.fixas
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const dividas =
+        dados.dividas
+        .reduce(
+            (s,x)=>
+                s+
+                Math.max(
+                    Number(x.valor)-
+                    Number(x.pago||0),
+                    0
+                ),
+            0
+        );
+
+
+    /*
+       Total necessário para cobrir
+       despesas e dívidas.
+    */
+
+    const total =
+        fixas+
+        diarias+
+        dividas;
+
+
+    const falta =
+        Math.max(
+            total-entradas,
+            0
+        );
+
+
+    /* DIAS */
+
+    const hojeData =
+        new Date();
+
+    const ano =
+        Number(mes.split("-")[0]);
+
+    const mesNumero =
+        Number(mes.split("-")[1]);
+
+
+    let diasRestantes;
+
+
+    if(
+        hojeData.getFullYear()===ano &&
+        hojeData.getMonth()+1===mesNumero
+    ){
+
+        const ultimo =
+            new Date(
+                ano,
+                mesNumero,
+                0
+            ).getDate();
+
+        diasRestantes =
+            Math.max(
+                ultimo-
+                hojeData.getDate()+
+                1,
+                1
+            );
+
+    }else{
+
+        diasRestantes =
+            new Date(
+                ano,
+                mesNumero,
+                0
+            ).getDate();
+
+    }
+
+
+    const meta =
+        falta/diasRestantes;
+
+
+    document.getElementById(
+        "fixasTotal"
+    ).textContent =
+        dinheiro(fixas);
+
+
+    document.getElementById(
+        "diariasTotal"
+    ).textContent =
+        dinheiro(diarias);
+
+
+    document.getElementById(
+        "dividasTotal"
+    ).textContent =
+        dinheiro(dividas);
+
+
+    document.getElementById(
+        "entradasTotal"
+    ).textContent =
+        dinheiro(entradas);
+
+
+    document.getElementById(
+        "meta"
+    ).textContent =
+        dinheiro(meta);
+
+
+    document.getElementById(
+        "conseguido"
+    ).textContent =
+        "Conseguido: "+dinheiro(entradas);
+
+
+    document.getElementById(
+        "faltando"
+    ).textContent =
+        "Falta: "+dinheiro(falta);
+
+
+    const percentual =
+        total>0
+        ? Math.min(
+            entradas/total*100,
+            100
+        )
+        : 0;
+
+
+    document.getElementById(
+        "barra"
+    ).style.width =
+        percentual+"%";
+
+
+    let mensagem;
+
+
+    if(total===0){
+
+        mensagem =
+            "Comece cadastrando suas despesas, dívidas e entradas.";
+
+    }else if(falta===0){
+
+        mensagem =
+            "🎉 Parabéns! Você já conseguiu cobrir o valor necessário deste mês.";
+
+    }else{
+
+        mensagem =
+            "Você precisa conseguir aproximadamente "+
+            dinheiro(meta)+
+            " por dia para alcançar sua meta.";
+
+    }
+
+
+    document.getElementById(
+        "mensagem"
+    ).textContent =
+        mensagem;
+
+
+    renderizar();
+
+}
+
+
+mesInput.addEventListener(
+    "change",
+    atualizar
+);
+
+
+/* RENDER */
+
+function renderizar(){
+
+    /* ENTRADAS */
+
+    const le =
+        document.getElementById(
+            "listaEntradas"
+        );
+
+    const entradas =
+        dados.entradas
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(
+                mesInput.value
+            )
+        )
+        .sort(
+            (a,b)=>
+                (b.data||"")
+                .localeCompare(a.data||"")
+        );
+
+
+    le.innerHTML =
+        entradas.length
+        ?
+        entradas.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.descricao}
+                </strong>
+
+                <small>
+                    ${x.data}
+                </small>
+
+            </div>
+
+            <div class="valor verde">
+                + ${dinheiro(x.valor)}
+            </div>
+
+            <button
+                class="excluir"
+                onclick="excluir('entradas','${x.id}')">
+                🗑️
+            </button>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma entrada neste mês.</div>';
+
+
+    /* FIXAS */
+
+    const lf =
+        document.getElementById(
+            "listaFixas"
+        );
+
+
+    lf.innerHTML =
+        dados.fixas.length
+        ?
+        dados.fixas.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.nome}
+                </strong>
+
+                <small>
+                    Vencimento:
+                    dia ${x.vencimento||"-"}
+                    ·
+                    ${x.pago ? "Pago" : "Pendente"}
+                </small>
+
+            </div>
+
+            <div class="valor">
+                ${dinheiro(x.valor)}
+            </div>
+
+            <div class="acoes">
+
+                <button
+                    class="pagar"
+                    onclick="pagarFixa('${x.id}',${x.pago})">
+                    ${x.pago ? "Desmarcar" : "Pagar"}
+                </button>
+
+                <button
+                    class="excluir"
+                    onclick="excluir('fixas','${x.id}')">
+                    🗑️
+                </button>
+
+            </div>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma despesa fixa.</div>';
+
+
+    /* DIÁRIAS */
+
+    const ld =
+        document.getElementById(
+            "listaDiarias"
+        );
+
+
+    const diarias =
+        dados.diarias
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(
+                mesInput.value
+            )
+        )
+        .sort(
+            (a,b)=>
+                (b.data||"")
+                .localeCompare(a.data||"")
+        );
+
+
+    ld.innerHTML =
+        diarias.length
+        ?
+        diarias.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.descricao}
+                </strong>
+
+                <small>
+                    ${x.categoria}
+                    ·
+                    ${x.data}
+                </small>
+
+            </div>
+
+            <div class="valor laranja">
+                ${dinheiro(x.valor)}
+            </div>
+
+            <button
+                class="excluir"
+                onclick="excluir('diarias','${x.id}')">
+                🗑️
+            </button>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma despesa neste mês.</div>';
+
+
+    /* DÍVIDAS */
+
+    const ldiv =
+        document.getElementById(
+            "listaDividas"
+        );
+
+
+    ldiv.innerHTML =
+        dados.dividas.length
+        ?
+        dados.dividas.map(x=>{
+
+            const restante =
+                Math.max(
+                    Number(x.valor)-
+                    Number(x.pago||0),
+                    0
+                );
+
+
+            return `
+
+            <div class="item">
+
+                <div class="info">
+
+                    <strong>
+                        ${x.nome}
+                    </strong>
+
+                    <small>
+                        Pago:
+                        ${dinheiro(x.pago)}
+                        · Restante:
+                        ${dinheiro(restante)}
+                    </small>
+
+                </div>
+
+                <div class="valor vermelho">
+                    ${dinheiro(restante)}
+                </div>
+
+                <div class="acoes">
+
+                    <button
+                        class="pagar"
+                        onclick="pagarDivida(
+                            '${x.id}',
+                            ${Number(x.pago||0)},
+                            ${Number(x.valor)}
+                        )">
+                        Pagar
+                    </button>
+
+                    <button
+                        class="excluir"
+                        onclick="excluir('dividas','${x.id}')">
+                        🗑️
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("")
+        :
+        '<div class="vazio">Nenhuma dívida cadastrada.</div>';
+
+}
+
+</script>
+
+</body>
+</html>
