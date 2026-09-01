@@ -7,7 +7,6 @@
 <title>Minha Meta Financeira</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -82,21 +81,10 @@ header p{
     font-size:22px;
 }
 
-.verde{
-    color:#16a34a;
-}
-
-.vermelho{
-    color:#dc2626;
-}
-
-.azul{
-    color:#2563eb;
-}
-
-.laranja{
-    color:#ea580c;
-}
+.verde{color:#16a34a}
+.vermelho{color:#dc2626}
+.azul{color:#2563eb}
+.laranja{color:#ea580c}
 
 .meta{
     background:#111827;
@@ -288,6 +276,7 @@ footer{
     padding:10px 15px;
     border-radius:10px;
     font-size:12px;
+    z-index:1000;
 }
 
 /* CONTROLE DIÁRIO */
@@ -317,9 +306,14 @@ footer{
     font-size:21px;
 }
 
+.tabela-container{
+    overflow-x:auto;
+}
+
 .tabela-diario{
     width:100%;
     border-collapse:collapse;
+    min-width:700px;
 }
 
 .tabela-diario th{
@@ -333,23 +327,21 @@ footer{
 .tabela-diario td{
     padding:9px;
     border-bottom:1px solid #e2e8f0;
+    vertical-align:middle;
 }
 
 .tabela-diario tr:hover{
     background:#f8fafc;
 }
 
+.tabela-diario input{
+    min-width:120px;
+    padding:9px;
+}
+
 .dia-numero{
     font-weight:bold;
-    width:80px;
-}
-
-.valor-dia{
-    width:160px;
-}
-
-.valor-dia input{
-    padding:9px;
+    width:70px;
 }
 
 .situacao{
@@ -365,12 +357,40 @@ footer{
     color:#dc2626;
 }
 
+.meta-exata{
+    color:#2563eb;
+}
+
 .meta-vazio{
     color:#64748b;
 }
 
 .diferenca{
     font-weight:bold;
+    white-space:nowrap;
+}
+
+.linha-ok{
+    background:#f0fdf4;
+}
+
+.linha-nao{
+    background:#fff7f7;
+}
+
+.linha-exata{
+    background:#eff6ff;
+}
+
+.dica-diario{
+    background:#f8fafc;
+    border-left:4px solid #2563eb;
+    padding:12px;
+    margin-bottom:18px;
+    border-radius:8px;
+    color:#475569;
+    font-size:13px;
+    line-height:1.6;
 }
 
 @media(max-width:800px){
@@ -388,19 +408,6 @@ footer{
 
     .diario-resumo{
         grid-template-columns:1fr;
-    }
-
-    .tabela-diario{
-        font-size:12px;
-    }
-
-    .tabela-diario th,
-    .tabela-diario td{
-        padding:8px 5px;
-    }
-
-    .valor-dia{
-        width:110px;
     }
 }
 
@@ -448,7 +455,6 @@ footer{
         gap:5px;
     }
 }
-
 </style>
 </head>
 
@@ -462,87 +468,43 @@ footer{
 <div class="container">
 
     <div class="mes">
-
         <strong>📅 Mês de controle</strong><br>
-
         <input type="month" id="mes">
-
     </div>
-
 
     <div class="cards">
 
         <div class="card">
-
             <span>🏠 Despesas fixas</span>
-
-            <h2
-                class="vermelho"
-                id="fixasTotal">
-                R$ 0,00
-            </h2>
-
+            <h2 class="vermelho" id="fixasTotal">R$ 0,00</h2>
         </div>
 
-
         <div class="card">
-
             <span>🧾 Despesas do mês</span>
-
-            <h2
-                class="laranja"
-                id="diariasTotal">
-                R$ 0,00
-            </h2>
-
+            <h2 class="laranja" id="diariasTotal">R$ 0,00</h2>
         </div>
 
-
         <div class="card">
-
             <span>💳 Dívidas restantes</span>
-
-            <h2
-                class="vermelho"
-                id="dividasTotal">
-                R$ 0,00
-            </h2>
-
+            <h2 class="vermelho" id="dividasTotal">R$ 0,00</h2>
         </div>
 
-
         <div class="card">
-
             <span>💰 Entradas</span>
-
-            <h2
-                class="verde"
-                id="entradasTotal">
-                R$ 0,00
-            </h2>
-
+            <h2 class="verde" id="entradasTotal">R$ 0,00</h2>
         </div>
 
     </div>
 
-
     <div class="meta">
 
-        <small>
-            🎯 VOCÊ PRECISA FAZER POR DIA
-        </small>
+        <small>🎯 VOCÊ PRECISA FAZER POR DIA</small>
 
-        <h2 id="meta">
-            R$ 0,00
-        </h2>
-
+        <h2 id="meta">R$ 0,00</h2>
 
         <div class="progress">
-
             <div id="barra"></div>
-
         </div>
-
 
         <div class="meta-info">
 
@@ -558,231 +520,118 @@ footer{
 
     </div>
 
-
     <div class="tabs">
 
-        <button
-            class="active"
-            onclick="aba('resumo',this)">
+        <button class="active" onclick="aba('resumo',this)">
             📊 Resumo
         </button>
 
-        <button
-            onclick="aba('diario',this)">
+        <button onclick="aba('diario',this)">
             📅 Diário
         </button>
 
-        <button
-            onclick="aba('entradas',this)">
+        <button onclick="aba('entradas',this)">
             💰 Entradas
         </button>
 
-        <button
-            onclick="aba('fixas',this)">
+        <button onclick="aba('fixas',this)">
             🏠 Fixas
         </button>
 
-        <button
-            onclick="aba('diarias',this)">
+        <button onclick="aba('diarias',this)">
             🧾 Despesas
         </button>
 
-        <button
-            onclick="aba('dividas',this)">
+        <button onclick="aba('dividas',this)">
             💳 Dívidas
         </button>
 
     </div>
 
-
     <!-- RESUMO -->
 
-    <div
-        id="resumo"
-        class="section active">
+    <div id="resumo" class="section active">
 
         <div class="box">
 
-            <h3>
-                📊 Como está sua situação?
-            </h3>
+            <h3>📊 Como está sua situação?</h3>
 
-            <p
-                id="mensagem"
-                style="line-height:1.7;color:#475569">
-
-                Adicione suas despesas e valores diários
-                para começar.
-
+            <p id="mensagem" style="line-height:1.7;color:#475569">
+                Adicione suas despesas e valores no controle diário para começar.
             </p>
 
         </div>
 
     </div>
 
+    <!-- DIÁRIO -->
 
-    <!-- CONTROLE DIÁRIO -->
-
-    <div
-        id="diario"
-        class="section">
-
+    <div id="diario" class="section">
 
         <div class="diario-resumo">
 
             <div class="diario-card">
-
-                <span>
-                    🎯 Meta diária
-                </span>
-
-                <strong id="diarioMeta">
-                    R$ 0,00
-                </strong>
-
+                <span>🎯 Total das metas</span>
+                <strong id="totalMetas">R$ 0,00</strong>
             </div>
 
-
             <div class="diario-card">
-
-                <span>
-                    💰 Total feito
-                </span>
-
-                <strong
-                    class="verde"
-                    id="diarioTotal">
-
-                    R$ 0,00
-
-                </strong>
-
+                <span>💰 Total feito</span>
+                <strong class="verde" id="diarioTotal">R$ 0,00</strong>
             </div>
 
-
             <div class="diario-card">
-
-                <span>
-                    📊 Média por dia
-                </span>
-
-                <strong
-                    class="azul"
-                    id="diarioMedia">
-
-                    R$ 0,00
-
-                </strong>
-
+                <span>📊 Diferença total</span>
+                <strong id="diferencaTotal">R$ 0,00</strong>
             </div>
 
         </div>
-
 
         <div class="diario-resumo">
 
             <div class="diario-card">
-
-                <span>
-                    ✅ Dias que bateram a meta
-                </span>
-
-                <strong
-                    class="verde"
-                    id="diasMeta">
-
-                    0
-
-                </strong>
-
+                <span>✅ Metas atingidas</span>
+                <strong class="verde" id="diasMeta">0</strong>
             </div>
 
-
             <div class="diario-card">
-
-                <span>
-                    ❌ Dias abaixo da meta
-                </span>
-
-                <strong
-                    class="vermelho"
-                    id="diasAbaixo">
-
-                    0
-
-                </strong>
-
+                <span>❌ Metas não atingidas</span>
+                <strong class="vermelho" id="diasAbaixo">0</strong>
             </div>
 
-
             <div class="diario-card">
-
-                <span>
-                    📅 Dias preenchidos
-                </span>
-
-                <strong id="diasPreenchidos">
-
-                    0
-
-                </strong>
-
+                <span>📅 Dias preenchidos</span>
+                <strong id="diasPreenchidos">0</strong>
             </div>
 
         </div>
-
 
         <div class="box">
 
-            <h3>
-                📅 Controle diário
-            </h3>
+            <h3>📅 Controle diário</h3>
 
-            <p
-                style="
-                color:#64748b;
-                font-size:13px;
-                margin-bottom:15px;
-                ">
+            <div class="dica-diario">
+                <strong>Como usar:</strong><br>
+                Em cada dia, coloque a <strong>meta que você quer fazer</strong>
+                e depois coloque quanto você <strong>realmente fez</strong>.
+                O sistema mostrará automaticamente a diferença.
+            </div>
 
-                Coloque somente o valor que você
-                conseguiu fazer em cada dia.
-
-            </p>
-
-
-            <div style="overflow-x:auto;">
+            <div class="tabela-container">
 
                 <table class="tabela-diario">
 
                     <thead>
 
                         <tr>
-
-                            <th>
-                                Dia
-                            </th>
-
-                            <th>
-                                Valor feito
-                            </th>
-
-                            <th>
-                                Meta
-                            </th>
-
-                            <th>
-                                Diferença
-                            </th>
-
-                            <th>
-                                Situação
-                            </th>
-
+                            <th>Dia</th>
+                            <th>🎯 Meta do dia</th>
+                            <th>💰 Fiz no dia</th>
+                            <th>Diferença</th>
+                            <th>Situação</th>
                         </tr>
 
                     </thead>
-
 
                     <tbody id="tabelaDiario"></tbody>
 
@@ -794,275 +643,140 @@ footer{
 
     </div>
 
-
     <!-- ENTRADAS -->
 
-    <div
-        id="entradas"
-        class="section">
+    <div id="entradas" class="section">
 
         <div class="box">
 
-            <h3>
-                💰 Nova entrada
-            </h3>
-
+            <h3>💰 Nova entrada</h3>
 
             <div class="form">
 
-                <input
-                    id="entradaDescricao"
-                    placeholder="Descrição">
+                <input id="entradaDescricao" placeholder="Descrição">
 
+                <input id="entradaValor" type="number" step="0.01" placeholder="Valor">
 
-                <input
-                    id="entradaValor"
-                    type="number"
-                    step="0.01"
-                    placeholder="Valor">
+                <input id="entradaData" type="date">
 
-
-                <input
-                    id="entradaData"
-                    type="date">
-
-
-                <button
-                    class="btn"
-                    onclick="addEntrada()">
-
+                <button class="btn" onclick="addEntrada()">
                     + Adicionar
-
                 </button>
 
             </div>
 
         </div>
 
-
-        <div
-            id="listaEntradas"
-            class="lista">
-        </div>
+        <div id="listaEntradas" class="lista"></div>
 
     </div>
-
 
     <!-- FIXAS -->
 
-    <div
-        id="fixas"
-        class="section">
+    <div id="fixas" class="section">
 
         <div class="box">
 
-            <h3>
-                🏠 Nova despesa fixa
-            </h3>
-
+            <h3>🏠 Nova despesa fixa</h3>
 
             <div class="form">
 
-                <input
-                    id="fixaNome"
-                    placeholder="Ex: Aluguel">
+                <input id="fixaNome" placeholder="Ex: Aluguel">
 
+                <input id="fixaValor" type="number" step="0.01" placeholder="Valor">
 
-                <input
-                    id="fixaValor"
-                    type="number"
-                    step="0.01"
-                    placeholder="Valor">
+                <input id="fixaVencimento" type="number" min="1" max="31" placeholder="Dia vencimento">
 
-
-                <input
-                    id="fixaVencimento"
-                    type="number"
-                    min="1"
-                    max="31"
-                    placeholder="Dia vencimento">
-
-
-                <button
-                    class="btn"
-                    onclick="addFixa()">
-
+                <button class="btn" onclick="addFixa()">
                     + Adicionar
-
                 </button>
 
             </div>
 
         </div>
 
-
-        <div
-            id="listaFixas"
-            class="lista">
-        </div>
+        <div id="listaFixas" class="lista"></div>
 
     </div>
-
 
     <!-- DIÁRIAS -->
 
-    <div
-        id="diarias"
-        class="section">
+    <div id="diarias" class="section">
 
         <div class="box">
 
-            <h3>
-                🧾 Nova despesa
-            </h3>
-
+            <h3>🧾 Nova despesa</h3>
 
             <div class="form">
 
-                <input
-                    id="diariaDescricao"
-                    placeholder="Ex: Mercado">
+                <input id="diariaDescricao" placeholder="Ex: Mercado">
 
+                <input id="diariaValor" type="number" step="0.01" placeholder="Valor">
 
-                <input
-                    id="diariaValor"
-                    type="number"
-                    step="0.01"
-                    placeholder="Valor">
-
-
-                <input
-                    id="diariaData"
-                    type="date">
-
+                <input id="diariaData" type="date">
 
                 <select id="diariaCategoria">
 
-                    <option>
-                        Alimentação
-                    </option>
-
-                    <option>
-                        Mercado
-                    </option>
-
-                    <option>
-                        Combustível
-                    </option>
-
-                    <option>
-                        Transporte
-                    </option>
-
-                    <option>
-                        Casa
-                    </option>
-
-                    <option>
-                        Lazer
-                    </option>
-
-                    <option>
-                        Outros
-                    </option>
+                    <option>Alimentação</option>
+                    <option>Mercado</option>
+                    <option>Combustível</option>
+                    <option>Transporte</option>
+                    <option>Casa</option>
+                    <option>Lazer</option>
+                    <option>Outros</option>
 
                 </select>
 
-
-                <button
-                    class="btn"
-                    onclick="addDiaria()">
-
+                <button class="btn" onclick="addDiaria()">
                     + Adicionar
-
                 </button>
 
             </div>
 
         </div>
 
-
-        <div
-            id="listaDiarias"
-            class="lista">
-        </div>
+        <div id="listaDiarias" class="lista"></div>
 
     </div>
 
-
     <!-- DIVIDAS -->
 
-    <div
-        id="dividas"
-        class="section">
+    <div id="dividas" class="section">
 
         <div class="box">
 
-            <h3>
-                💳 Nova dívida
-            </h3>
-
+            <h3>💳 Nova dívida</h3>
 
             <div class="form">
 
-                <input
-                    id="dividaNome"
-                    placeholder="Ex: Cartão">
+                <input id="dividaNome" placeholder="Ex: Cartão">
 
+                <input id="dividaValor" type="number" step="0.01" placeholder="Valor total">
 
-                <input
-                    id="dividaValor"
-                    type="number"
-                    step="0.01"
-                    placeholder="Valor total">
+                <input id="dividaPago" type="number" step="0.01" placeholder="Valor já pago">
 
+                <input id="dividaVencimento" type="date">
 
-                <input
-                    id="dividaPago"
-                    type="number"
-                    step="0.01"
-                    placeholder="Valor já pago">
-
-
-                <input
-                    id="dividaVencimento"
-                    type="date">
-
-
-                <button
-                    class="btn"
-                    onclick="addDivida()">
-
+                <button class="btn" onclick="addDivida()">
                     + Adicionar
-
                 </button>
 
             </div>
 
         </div>
 
-
-        <div
-            id="listaDividas"
-            class="lista">
-        </div>
+        <div id="listaDividas" class="lista"></div>
 
     </div>
 
 </div>
 
-
 <footer>
     Minha Meta Financeira © 2026
 </footer>
 
-
-<div
-    class="status"
-    id="status">
-
+<div class="status" id="status">
     ☁️ Conectando...
-
 </div>
 
 
@@ -1087,50 +801,33 @@ import {
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
+    apiKey: "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
 
-    authDomain:
-        "financas-3ca07.firebaseapp.com",
+    authDomain: "financas-3ca07.firebaseapp.com",
 
-    projectId:
-        "financas-3ca07",
+    projectId: "financas-3ca07",
 
-    storageBucket:
-        "financas-3ca07.firebasestorage.app",
+    storageBucket: "financas-3ca07.firebasestorage.app",
 
-    messagingSenderId:
-        "1049971527541",
+    messagingSenderId: "1049971527541",
 
-    appId:
-        "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
+    appId: "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
 
-    measurementId:
-        "G-XB06NHKWFX"
+    measurementId: "G-XB06NHKWFX"
 
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
-
-const db =
-    getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 
 /* CAMINHO */
 
-const BASE =
-    "usuarios/usuario-pessoal";
+const BASE = "usuarios/usuario-pessoal";
 
-
-const col =
-    nome =>
-        collection(
-            db,
-            BASE,
-            nome
-        );
+const col = nome =>
+    collection(db,BASE,nome);
 
 
 let dados = {
@@ -1149,32 +846,19 @@ let dados = {
 const mesInput =
     document.getElementById("mes");
 
-
 const agora =
     new Date();
 
-
 mesInput.value =
-    agora.getFullYear() +
-    "-" +
-    String(
-        agora.getMonth()+1
-    ).padStart(2,"0");
+    agora.getFullYear()+"-"+
+    String(agora.getMonth()+1).padStart(2,"0");
 
 
 const hoje =
-    agora.toISOString()
-    .split("T")[0];
+    agora.toISOString().split("T")[0];
 
-
-document.getElementById(
-    "entradaData"
-).value = hoje;
-
-
-document.getElementById(
-    "diariaData"
-).value = hoje;
+document.getElementById("entradaData").value = hoje;
+document.getElementById("diariaData").value = hoje;
 
 
 /* STATUS */
@@ -1184,15 +868,10 @@ function status(texto,erro=false){
     const el =
         document.getElementById("status");
 
-    el.textContent =
-        texto;
+    el.textContent = texto;
 
     el.style.background =
-        erro
-        ?
-        "#dc2626"
-        :
-        "#16a34a";
+        erro ? "#dc2626" : "#16a34a";
 
 }
 
@@ -1215,29 +894,23 @@ function dinheiro(valor){
 
 /* ABAS */
 
-window.aba =
-function(id,botao){
+window.aba = function(id,botao){
 
     document
         .querySelectorAll(".section")
-        .forEach(
-            x =>
+        .forEach(x =>
             x.classList.remove("active")
         );
-
 
     document
         .querySelectorAll(".tabs button")
-        .forEach(
-            x =>
+        .forEach(x =>
             x.classList.remove("active")
         );
-
 
     document
         .getElementById(id)
         .classList.add("active");
-
 
     botao.classList.add("active");
 
@@ -1246,50 +919,32 @@ function(id,botao){
 
 /* ENTRADA */
 
-window.addEntrada =
-async function(){
+window.addEntrada = async function(){
 
     const descricao =
-        document
-        .getElementById(
+        document.getElementById(
             "entradaDescricao"
-        )
-        .value
-        .trim();
-
+        ).value.trim();
 
     const valor =
         Number(
-            document
-            .getElementById(
+            document.getElementById(
                 "entradaValor"
-            )
-            .value
+            ).value
         );
-
 
     const data =
-        document
-        .getElementById(
+        document.getElementById(
             "entradaData"
-        )
-        .value;
+        ).value;
 
+    if(!descricao || valor<=0 || !data){
 
-    if(
-        !descricao ||
-        valor<=0 ||
-        !data
-    ){
-
-        alert(
-            "Preencha todos os campos."
-        );
+        alert("Preencha todos os campos.");
 
         return;
 
     }
-
 
     try{
 
@@ -1303,30 +958,21 @@ async function(){
             }
         );
 
-
         document.getElementById(
             "entradaDescricao"
         ).value="";
-
 
         document.getElementById(
             "entradaValor"
         ).value="";
 
-
-        status(
-            "☁️ Entrada salva!"
-        );
-
+        status("☁️ Entrada salva!");
 
     }catch(e){
 
         console.error(e);
 
-        status(
-            "Erro ao salvar",
-            true
-        );
+        status("Erro ao salvar",true);
 
         alert(
             "Erro ao salvar. Verifique as regras do Firestore."
@@ -1339,49 +985,32 @@ async function(){
 
 /* FIXA */
 
-window.addFixa =
-async function(){
+window.addFixa = async function(){
 
     const nome =
-        document
-        .getElementById(
+        document.getElementById(
             "fixaNome"
-        )
-        .value
-        .trim();
-
+        ).value.trim();
 
     const valor =
         Number(
-            document
-            .getElementById(
+            document.getElementById(
                 "fixaValor"
-            )
-            .value
+            ).value
         );
-
 
     const vencimento =
-        document
-        .getElementById(
+        document.getElementById(
             "fixaVencimento"
-        )
-        .value;
+        ).value;
 
+    if(!nome || valor<=0){
 
-    if(
-        !nome ||
-        valor<=0
-    ){
-
-        alert(
-            "Informe nome e valor."
-        );
+        alert("Informe nome e valor.");
 
         return;
 
     }
-
 
     try{
 
@@ -1396,35 +1025,25 @@ async function(){
             }
         );
 
-
         document.getElementById(
             "fixaNome"
         ).value="";
-
 
         document.getElementById(
             "fixaValor"
         ).value="";
 
-
         document.getElementById(
             "fixaVencimento"
         ).value="";
 
-
-        status(
-            "☁️ Despesa fixa salva!"
-        );
-
+        status("☁️ Despesa fixa salva!");
 
     }catch(e){
 
         console.error(e);
 
-        status(
-            "Erro ao salvar",
-            true
-        );
+        status("Erro ao salvar",true);
 
     }
 
@@ -1433,58 +1052,37 @@ async function(){
 
 /* DIÁRIA */
 
-window.addDiaria =
-async function(){
+window.addDiaria = async function(){
 
     const descricao =
-        document
-        .getElementById(
+        document.getElementById(
             "diariaDescricao"
-        )
-        .value
-        .trim();
-
+        ).value.trim();
 
     const valor =
         Number(
-            document
-            .getElementById(
+            document.getElementById(
                 "diariaValor"
-            )
-            .value
+            ).value
         );
-
 
     const data =
-        document
-        .getElementById(
+        document.getElementById(
             "diariaData"
-        )
-        .value;
-
+        ).value;
 
     const categoria =
-        document
-        .getElementById(
+        document.getElementById(
             "diariaCategoria"
-        )
-        .value;
+        ).value;
 
+    if(!descricao || valor<=0 || !data){
 
-    if(
-        !descricao ||
-        valor<=0 ||
-        !data
-    ){
-
-        alert(
-            "Preencha todos os campos."
-        );
+        alert("Preencha todos os campos.");
 
         return;
 
     }
-
 
     try{
 
@@ -1499,30 +1097,21 @@ async function(){
             }
         );
 
-
         document.getElementById(
             "diariaDescricao"
         ).value="";
-
 
         document.getElementById(
             "diariaValor"
         ).value="";
 
-
-        status(
-            "☁️ Despesa salva!"
-        );
-
+        status("☁️ Despesa salva!");
 
     }catch(e){
 
         console.error(e);
 
-        status(
-            "Erro ao salvar",
-            true
-        );
+        status("Erro ao salvar",true);
 
     }
 
@@ -1531,59 +1120,39 @@ async function(){
 
 /* DÍVIDA */
 
-window.addDivida =
-async function(){
+window.addDivida = async function(){
 
     const nome =
-        document
-        .getElementById(
+        document.getElementById(
             "dividaNome"
-        )
-        .value
-        .trim();
-
+        ).value.trim();
 
     const valor =
         Number(
-            document
-            .getElementById(
+            document.getElementById(
                 "dividaValor"
-            )
-            .value
+            ).value
         );
-
 
     const pago =
         Number(
-            document
-            .getElementById(
+            document.getElementById(
                 "dividaPago"
-            )
-            .value
+            ).value
         ) || 0;
 
-
     const vencimento =
-        document
-        .getElementById(
+        document.getElementById(
             "dividaVencimento"
-        )
-        .value;
+        ).value;
 
+    if(!nome || valor<=0){
 
-    if(
-        !nome ||
-        valor<=0
-    ){
-
-        alert(
-            "Informe nome e valor."
-        );
+        alert("Informe nome e valor.");
 
         return;
 
     }
-
 
     try{
 
@@ -1598,40 +1167,29 @@ async function(){
             }
         );
 
-
         document.getElementById(
             "dividaNome"
         ).value="";
-
 
         document.getElementById(
             "dividaValor"
         ).value="";
 
-
         document.getElementById(
             "dividaPago"
         ).value="";
-
 
         document.getElementById(
             "dividaVencimento"
         ).value="";
 
-
-        status(
-            "☁️ Dívida salva!"
-        );
-
+        status("☁️ Dívida salva!");
 
     }catch(e){
 
         console.error(e);
 
-        status(
-            "Erro ao salvar",
-            true
-        );
+        status("Erro ao salvar",true);
 
     }
 
@@ -1640,16 +1198,10 @@ async function(){
 
 /* EXCLUSÃO */
 
-window.excluir =
-async function(tipo,id){
+window.excluir = async function(tipo,id){
 
-    if(
-        !confirm(
-            "Deseja excluir este registro?"
-        )
-    )
+    if(!confirm("Deseja excluir este registro?"))
         return;
-
 
     try{
 
@@ -1662,20 +1214,13 @@ async function(tipo,id){
             )
         );
 
-
-        status(
-            "🗑️ Registro excluído!"
-        );
-
+        status("🗑️ Registro excluído!");
 
     }catch(e){
 
         console.error(e);
 
-        status(
-            "Erro ao excluir",
-            true
-        );
+        status("Erro ao excluir",true);
 
     }
 
@@ -1684,8 +1229,7 @@ async function(tipo,id){
 
 /* PAGAR FIXA */
 
-window.pagarFixa =
-async function(id,pago){
+window.pagarFixa = async function(id,pago){
 
     try{
 
@@ -1713,11 +1257,7 @@ async function(id,pago){
 /* PAGAR DÍVIDA */
 
 window.pagarDivida =
-async function(
-    id,
-    valorPago,
-    valorTotal
-){
+async function(id,valorPago,valorTotal){
 
     const valor =
         Number(
@@ -1727,17 +1267,14 @@ async function(
             )
         );
 
-
     if(valor<=0)
         return;
-
 
     const novoValor =
         Math.min(
             valorPago+valor,
             valorTotal
         );
-
 
     try{
 
@@ -1762,14 +1299,13 @@ async function(
 };
 
 
-/* SALVAR VALOR DIÁRIO */
+/* SALVAR META E VALOR DO DIA */
 
 window.salvarDiario =
-async function(data,valor){
+async function(data,tipo,valor){
 
     valor =
         Number(valor) || 0;
-
 
     try{
 
@@ -1780,39 +1316,57 @@ async function(data,valor){
             );
 
 
-        /*
-           Se o valor for apagado,
-           removemos o registro.
-        */
-
-        if(
-            existente &&
-            valor<=0
-        ){
-
-            await deleteDoc(
-                doc(
-                    db,
-                    BASE,
-                    "diario",
-                    existente.id
-                )
-            );
-
-            status(
-                "🗑️ Valor do dia removido!"
-            );
-
-            return;
-
-        }
-
-
-        /*
-           Atualiza um dia existente.
-        */
-
         if(existente){
+
+            const atualizacao = {};
+
+            if(tipo === "meta"){
+                atualizacao.meta = valor;
+            }
+
+            if(tipo === "feito"){
+                atualizacao.valor = valor;
+            }
+
+            /*
+               Se os dois campos estiverem zerados,
+               remove o registro.
+            */
+
+            const metaAtual =
+                tipo === "meta"
+                ?
+                valor
+                :
+                Number(existente.meta || 0);
+
+            const feitoAtual =
+                tipo === "feito"
+                ?
+                valor
+                :
+                Number(existente.valor || 0);
+
+
+            if(
+                metaAtual<=0 &&
+                feitoAtual<=0
+            ){
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        BASE,
+                        "diario",
+                        existente.id
+                    )
+                );
+
+                status("🗑️ Dia removido!");
+
+                return;
+            }
+
 
             await updateDoc(
                 doc(
@@ -1821,42 +1375,50 @@ async function(data,valor){
                     "diario",
                     existente.id
                 ),
-                {
-                    valor:valor
-                }
+                atualizacao
             );
 
-        }
+        }else{
 
-        /*
-           Cria um novo dia.
-        */
+            if(valor<=0)
+                return;
 
-        else if(valor>0){
+
+            const registro = {
+
+                data:data,
+
+                meta:
+                    tipo === "meta"
+                    ? valor
+                    : 0,
+
+                valor:
+                    tipo === "feito"
+                    ? valor
+                    : 0,
+
+                criadoEm:Date.now()
+
+            };
+
 
             await addDoc(
                 col("diario"),
-                {
-                    data:data,
-                    valor:valor,
-                    criadoEm:Date.now()
-                }
+                registro
             );
 
         }
 
 
-        status(
-            "☁️ Valor do dia salvo!"
-        );
-
+        status("☁️ Dia salvo!");
 
     }catch(e){
 
         console.error(e);
 
         status(
-            "❌ Erro ao salvar valor",
+            "❌ Erro ao salvar",
             true
         );
 
@@ -1882,13 +1444,9 @@ function ouvir(tipo){
                     })
                 );
 
-
             atualizar();
 
-
-            status(
-                "☁️ Sincronizado"
-            );
+            status("☁️ Sincronizado");
 
         },
 
@@ -1922,10 +1480,6 @@ function atualizar(){
         mesInput.value;
 
 
-    /*
-       DESPESAS DO MÊS
-    */
-
     const diarias =
         dados.diarias
         .filter(
@@ -1935,29 +1489,19 @@ function atualizar(){
         )
         .reduce(
             (s,x)=>
-                s+
-                Number(x.valor),
+                s+Number(x.valor),
             0
         );
 
-
-    /*
-       DESPESAS FIXAS
-    */
 
     const fixas =
         dados.fixas
         .reduce(
             (s,x)=>
-                s+
-                Number(x.valor),
+                s+Number(x.valor),
             0
         );
 
-
-    /*
-       DÍVIDAS RESTANTES
-    */
 
     const dividas =
         dados.dividas
@@ -1973,10 +1517,6 @@ function atualizar(){
         );
 
 
-    /*
-       ENTRADAS CADASTRADAS
-    */
-
     const entradas =
         dados.entradas
         .filter(
@@ -1986,17 +1526,13 @@ function atualizar(){
         )
         .reduce(
             (s,x)=>
-                s+
-                Number(x.valor),
+                s+Number(x.valor),
             0
         );
 
 
     /*
-       VALORES DO CALENDÁRIO
-       
-       O calendário é usado como
-       "conseguido" da meta.
+       TOTAL FEITO NO CONTROLE DIÁRIO
     */
 
     const diarioMes =
@@ -2009,8 +1545,7 @@ function atualizar(){
 
 
     const conseguido =
-        diarioMes
-        .reduce(
+        diarioMes.reduce(
             (s,x)=>
                 s+
                 Number(x.valor||0),
@@ -2028,13 +1563,6 @@ function atualizar(){
         dividas;
 
 
-    /*
-       QUANTO AINDA FALTA
-       
-       Agora o cálculo utiliza
-       diretamente o calendário.
-    */
-
     const falta =
         Math.max(
             total-conseguido,
@@ -2043,24 +1571,18 @@ function atualizar(){
 
 
     /*
-       DIAS DO MÊS
+       META MÉDIA PARA O TOPO
     */
-
-    const hojeData =
-        new Date();
-
 
     const ano =
         Number(
             mes.split("-")[0]
         );
 
-
     const mesNumero =
         Number(
             mes.split("-")[1]
         );
-
 
     const ultimo =
         new Date(
@@ -2069,6 +1591,8 @@ function atualizar(){
             0
         ).getDate();
 
+    const hojeData =
+        new Date();
 
     let diasRestantes;
 
@@ -2094,17 +1618,9 @@ function atualizar(){
     }
 
 
-    /*
-       META DIÁRIA
-    */
-
     const meta =
         falta/diasRestantes;
 
-
-    /*
-       CARDS
-    */
 
     document.getElementById(
         "fixasTotal"
@@ -2130,21 +1646,11 @@ function atualizar(){
         dinheiro(entradas);
 
 
-    /*
-       META
-    */
-
     document.getElementById(
         "meta"
     ).textContent =
         dinheiro(meta);
 
-
-    /*
-       CONSEGUIDO
-       
-       Agora vem do calendário.
-    */
 
     document.getElementById(
         "conseguido"
@@ -2153,20 +1659,12 @@ function atualizar(){
         dinheiro(conseguido);
 
 
-    /*
-       FALTA
-    */
-
     document.getElementById(
         "faltando"
     ).textContent =
         "Falta: "+
         dinheiro(falta);
 
-
-    /*
-       BARRA DE PROGRESSO
-    */
 
     const percentual =
         total>0
@@ -2187,33 +1685,25 @@ function atualizar(){
         percentual+"%";
 
 
-    /*
-       MENSAGEM
-    */
-
     let mensagem;
 
 
     if(total===0){
 
         mensagem =
-            "Comece cadastrando suas despesas, dívidas e valores no controle diário.";
+            "Comece cadastrando suas despesas, dívidas e metas no controle diário.";
 
-    }
-
-    else if(falta===0){
+    }else if(falta===0){
 
         mensagem =
             "🎉 Parabéns! Você já conseguiu cobrir todo o valor necessário.";
 
-    }
-
-    else{
+    }else{
 
         mensagem =
             "Você precisa conseguir aproximadamente "+
             dinheiro(meta)+
-            " por dia para alcançar sua meta.";
+            " por dia para alcançar o valor necessário.";
 
     }
 
@@ -2231,7 +1721,7 @@ function atualizar(){
 }
 
 
-/* CALENDÁRIO */
+/* ATUALIZAR CONTROLE DIÁRIO */
 
 function atualizarDiario(){
 
@@ -2248,62 +1738,17 @@ function atualizarDiario(){
         );
 
 
-    /*
-       DESPESAS
-    */
-
-    const diarias =
-        dados.diarias
-        .filter(
-            x =>
-                x.data &&
-                x.data.startsWith(mes)
-        )
-        .reduce(
+    const totalMetas =
+        registros.reduce(
             (s,x)=>
                 s+
-                Number(x.valor),
+                Number(x.meta||0),
             0
         );
 
-
-    const fixas =
-        dados.fixas
-        .reduce(
-            (s,x)=>
-                s+
-                Number(x.valor),
-            0
-        );
-
-
-    const dividas =
-        dados.dividas
-        .reduce(
-            (s,x)=>
-                s+
-                Math.max(
-                    Number(x.valor)-
-                    Number(x.pago||0),
-                    0
-                ),
-            0
-        );
-
-
-    const totalNecessario =
-        fixas+
-        diarias+
-        dividas;
-
-
-    /*
-       Total feito
-    */
 
     const totalFeito =
-        registros
-        .reduce(
+        registros.reduce(
             (s,x)=>
                 s+
                 Number(x.valor||0),
@@ -2311,126 +1756,38 @@ function atualizarDiario(){
         );
 
 
-    /*
-       Dias
-    */
+    const diferencaTotal =
+        totalFeito-totalMetas;
 
-    const ano =
-        Number(
-            mes.split("-")[0]
-        );
-
-
-    const mesNumero =
-        Number(
-            mes.split("-")[1]
-        );
-
-
-    const quantidadeDias =
-        new Date(
-            ano,
-            mesNumero,
-            0
-        ).getDate();
-
-
-    const hojeData =
-        new Date();
-
-
-    let diasRestantes;
-
-
-    if(
-        hojeData.getFullYear()===ano &&
-        hojeData.getMonth()+1===mesNumero
-    ){
-
-        diasRestantes =
-            Math.max(
-                quantidadeDias-
-                hojeData.getDate()+
-                1,
-                1
-            );
-
-    }else{
-
-        diasRestantes =
-            quantidadeDias;
-
-    }
-
-
-    /*
-       Falta considerando
-       o calendário.
-    */
-
-    const falta =
-        Math.max(
-            totalNecessario-
-            totalFeito,
-            0
-        );
-
-
-    /*
-       Meta diária
-    */
-
-    const meta =
-        falta/
-        diasRestantes;
-
-
-    /*
-       Estatísticas
-    */
 
     const preenchidos =
-        registros
-        .filter(
+        registros.filter(
             x =>
+                Number(x.meta||0)>0 ||
                 Number(x.valor||0)>0
-        )
-        .length;
-
-
-    const media =
-        preenchidos>0
-        ?
-        totalFeito/
-        preenchidos
-        :
-        0;
+        ).length;
 
 
     const atingiram =
-        registros
-        .filter(
+        registros.filter(
             x =>
-                Number(x.valor||0)>=meta &&
-                Number(x.valor||0)>0
-        )
-        .length;
+                Number(x.meta||0)>0 &&
+                Number(x.valor||0)>=Number(x.meta||0)
+        ).length;
 
 
     const abaixo =
-        registros
-        .filter(
+        registros.filter(
             x =>
-                Number(x.valor||0)<meta &&
-                Number(x.valor||0)>0
-        )
-        .length;
+                Number(x.meta||0)>0 &&
+                Number(x.valor||0)<Number(x.meta||0)
+        ).length;
 
 
     document.getElementById(
-        "diarioMeta"
+        "totalMetas"
     ).textContent =
-        dinheiro(meta);
+        dinheiro(totalMetas);
 
 
     document.getElementById(
@@ -2439,10 +1796,24 @@ function atualizarDiario(){
         dinheiro(totalFeito);
 
 
-    document.getElementById(
-        "diarioMedia"
-    ).textContent =
-        dinheiro(media);
+    const diferencaElemento =
+        document.getElementById(
+            "diferencaTotal"
+        );
+
+
+    diferencaElemento.textContent =
+        dinheiro(
+            diferencaTotal
+        );
+
+
+    diferencaElemento.className =
+        diferencaTotal>=0
+        ?
+        "verde"
+        :
+        "vermelho";
 
 
     document.getElementById(
@@ -2466,6 +1837,26 @@ function atualizarDiario(){
     /*
        TABELA
     */
+
+    const ano =
+        Number(
+            mes.split("-")[0]
+        );
+
+
+    const mesNumero =
+        Number(
+            mes.split("-")[1]
+        );
+
+
+    const quantidadeDias =
+        new Date(
+            ano,
+            mesNumero,
+            0
+        ).getDate();
+
 
     const tabela =
         document.getElementById(
@@ -2493,7 +1884,17 @@ function atualizarDiario(){
             );
 
 
-        const valor =
+        const meta =
+            registro
+            ?
+            Number(
+                registro.meta||0
+            )
+            :
+            0;
+
+
+        const feito =
             registro
             ?
             Number(
@@ -2504,67 +1905,132 @@ function atualizarDiario(){
 
 
         const diferenca =
-            valor-meta;
+            feito-meta;
 
 
-        let situacao =
-            `
+        let linhaClasse = "";
+
+        let situacao = `
             <span class="situacao meta-vazio">
-                ⚪ Não preenchido
+                ⚪ Preencha os valores
             </span>
-            `;
+        `;
+
+        let diferencaHTML = "—";
 
 
-        if(valor>0){
+        /*
+           Meta não preenchida
+        */
 
-            if(valor>=meta){
+        if(meta<=0){
 
-                situacao =
-                    `
-                    <span class="situacao meta-ok">
-                        ✅ Meta atingida
+            if(feito>0){
+
+                situacao = `
+                    <span class="situacao meta-vazio">
+                        🎯 Defina a meta
                     </span>
-                    `;
+                `;
 
-            }else{
+            }
 
-                situacao =
-                    `
+        }
+
+        /*
+           Meta preenchida
+        */
+
+        else{
+
+            if(feito<=0){
+
+                situacao = `
+                    <span class="situacao meta-nao">
+                        ❌ Ainda não feito
+                    </span>
+                `;
+
+                diferencaHTML = `
+                    <span class="vermelho">
+                        Falta ${dinheiro(meta)}
+                    </span>
+                `;
+
+                linhaClasse =
+                    "linha-nao";
+
+            }
+
+            else if(feito<meta){
+
+                const falta =
+                    meta-feito;
+
+                situacao = `
                     <span class="situacao meta-nao">
                         ❌ Abaixo da meta
                     </span>
-                    `;
+                `;
+
+                diferencaHTML = `
+                    <span class="vermelho">
+                        Falta ${dinheiro(falta)}
+                    </span>
+                `;
+
+                linhaClasse =
+                    "linha-nao";
+
+            }
+
+            else if(feito===meta){
+
+                situacao = `
+                    <span class="situacao meta-exata">
+                        🎯 Meta atingida
+                    </span>
+                `;
+
+                diferencaHTML = `
+                    <span class="meta-exata">
+                        Exatamente a meta
+                    </span>
+                `;
+
+                linhaClasse =
+                    "linha-exata";
+
+            }
+
+            else{
+
+                const passou =
+                    feito-meta;
+
+                situacao = `
+                    <span class="situacao meta-ok">
+                        ✅ Meta ultrapassada
+                    </span>
+                `;
+
+                diferencaHTML = `
+                    <span class="verde">
+                        Passou ${dinheiro(passou)}
+                    </span>
+                `;
+
+                linhaClasse =
+                    "linha-ok";
 
             }
 
         }
 
 
-        const diferencaTexto =
-            valor>0
-            ?
-            dinheiro(diferenca)
-            :
-            "—";
-
-
-        const classeDiferenca =
-            valor>0
-            ?
-            (
-                diferenca>=0
-                ?
-                "verde"
-                :
-                "vermelho"
-            )
-            :
-            "";
-
-
         html += `
 
-        <tr>
+        <tr class="${linhaClasse}">
 
             <td class="dia-numero">
 
@@ -2574,17 +2040,18 @@ function atualizarDiario(){
             </td>
 
 
-            <td class="valor-dia">
+            <td>
 
                 <input
                     type="number"
                     min="0"
                     step="0.01"
-                    value="${valor || ""}"
-                    placeholder="R$ 0,00"
+                    value="${meta || ""}"
+                    placeholder="Meta"
                     onchange="
                         salvarDiario(
                             '${data}',
+                            'meta',
                             this.value
                         )
                     "
@@ -2595,15 +2062,27 @@ function atualizarDiario(){
 
             <td>
 
-                ${dinheiro(meta)}
+                <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="${feito || ""}"
+                    placeholder="Quanto fez"
+                    onchange="
+                        salvarDiario(
+                            '${data}',
+                            'feito',
+                            this.value
+                        )
+                    "
+                >
 
             </td>
 
 
-            <td
-                class="diferenca ${classeDiferenca}">
+            <td class="diferenca">
 
-                ${diferencaTexto}
+                ${diferencaHTML}
 
             </td>
 
@@ -2637,9 +2116,7 @@ mesInput.addEventListener(
 
 function renderizar(){
 
-    /*
-       ENTRADAS
-    */
+    /* ENTRADAS */
 
     const le =
         document.getElementById(
@@ -2668,7 +2145,6 @@ function renderizar(){
     le.innerHTML =
         entradas.length
         ?
-
         entradas.map(
             x => `
 
@@ -2686,13 +2162,9 @@ function renderizar(){
 
                 </div>
 
-
                 <div class="valor verde">
-
                     + ${dinheiro(x.valor)}
-
                 </div>
-
 
                 <button
                     class="excluir"
@@ -2702,18 +2174,14 @@ function renderizar(){
                             '${x.id}'
                         )
                     ">
-
                     🗑️
-
                 </button>
 
             </div>
 
             `
         ).join("")
-
         :
-
         `
         <div class="vazio">
             Nenhuma entrada neste mês.
@@ -2721,9 +2189,7 @@ function renderizar(){
         `;
 
 
-    /*
-       FIXAS
-    */
+    /* FIXAS */
 
     const lf =
         document.getElementById(
@@ -2733,9 +2199,7 @@ function renderizar(){
 
     lf.innerHTML =
         dados.fixas.length
-
         ?
-
         dados.fixas.map(
             x => `
 
@@ -2748,31 +2212,17 @@ function renderizar(){
                     </strong>
 
                     <small>
-
                         Vencimento:
                         dia ${x.vencimento||"-"}
-
                         ·
-
-                        ${
-                            x.pago
-                            ?
-                            "Pago"
-                            :
-                            "Pendente"
-                        }
-
+                        ${x.pago ? "Pago" : "Pendente"}
                     </small>
 
                 </div>
 
-
                 <div class="valor">
-
                     ${dinheiro(x.valor)}
-
                 </div>
-
 
                 <div class="acoes">
 
@@ -2785,16 +2235,9 @@ function renderizar(){
                             )
                         ">
 
-                        ${
-                            x.pago
-                            ?
-                            "Desmarcar"
-                            :
-                            "Pagar"
-                        }
+                        ${x.pago ? "Desmarcar" : "Pagar"}
 
                     </button>
-
 
                     <button
                         class="excluir"
@@ -2815,9 +2258,7 @@ function renderizar(){
 
             `
         ).join("")
-
         :
-
         `
         <div class="vazio">
             Nenhuma despesa fixa.
@@ -2825,9 +2266,7 @@ function renderizar(){
         `;
 
 
-    /*
-       DIÁRIAS
-    */
+    /* DIÁRIAS */
 
     const ld =
         document.getElementById(
@@ -2855,9 +2294,7 @@ function renderizar(){
 
     ld.innerHTML =
         diarias.length
-
         ?
-
         diarias.map(
             x => `
 
@@ -2870,22 +2307,16 @@ function renderizar(){
                     </strong>
 
                     <small>
-
                         ${x.categoria}
                         ·
                         ${x.data}
-
                     </small>
 
                 </div>
 
-
                 <div class="valor laranja">
-
                     ${dinheiro(x.valor)}
-
                 </div>
-
 
                 <button
                     class="excluir"
@@ -2904,9 +2335,7 @@ function renderizar(){
 
             `
         ).join("")
-
         :
-
         `
         <div class="vazio">
             Nenhuma despesa neste mês.
@@ -2914,9 +2343,7 @@ function renderizar(){
         `;
 
 
-    /*
-       DÍVIDAS
-    */
+    /* DÍVIDAS */
 
     const ldiv =
         document.getElementById(
@@ -2926,9 +2353,7 @@ function renderizar(){
 
     ldiv.innerHTML =
         dados.dividas.length
-
         ?
-
         dados.dividas.map(
             x => {
 
@@ -2954,9 +2379,7 @@ function renderizar(){
 
                             Pago:
                             ${dinheiro(x.pago)}
-
                             ·
-
                             Restante:
                             ${dinheiro(restante)}
 
@@ -2965,8 +2388,7 @@ function renderizar(){
                     </div>
 
 
-                    <div
-                        class="valor vermelho">
+                    <div class="valor vermelho">
 
                         ${dinheiro(restante)}
 
@@ -3011,9 +2433,7 @@ function renderizar(){
 
             }
         ).join("")
-
         :
-
         `
         <div class="vazio">
             Nenhuma dívida cadastrada.
