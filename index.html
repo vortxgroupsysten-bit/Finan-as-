@@ -1,7 +1,4 @@
-.progress{
-    height:13px;
-    background:#374151;
-    border-radius:20px;<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -56,9 +53,6 @@ header p{
 
 .mes input{
     margin-top:7px;
-    padding:11px;
-    border:1px solid #cbd5e1;
-    border-radius:8px;
 }
 
 .cards{
@@ -84,10 +78,21 @@ header p{
     font-size:22px;
 }
 
-.verde{color:#16a34a}
-.vermelho{color:#dc2626}
-.azul{color:#2563eb}
-.laranja{color:#ea580c}
+.verde{
+    color:#16a34a;
+}
+
+.vermelho{
+    color:#dc2626;
+}
+
+.azul{
+    color:#2563eb;
+}
+
+.laranja{
+    color:#ea580c;
+}
 
 .meta{
     background:#111827;
@@ -175,7 +180,8 @@ header p{
     gap:10px;
 }
 
-input,select{
+input,
+select{
     width:100%;
     padding:12px;
     border:1px solid #cbd5e1;
@@ -183,7 +189,8 @@ input,select{
     outline:none;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
     border-color:#2563eb;
 }
 
@@ -209,6 +216,7 @@ input:focus,select:focus{
     border-radius:16px;
     box-shadow:0 3px 12px #0000000c;
     margin-bottom:20px;
+    overflow:hidden;
 }
 
 .calendario-topo{
@@ -216,7 +224,6 @@ input:focus,select:focus{
     justify-content:space-between;
     align-items:center;
     margin-bottom:15px;
-    gap:10px;
 }
 
 .calendario-topo h3{
@@ -243,10 +250,16 @@ input:focus,select:focus{
     margin-bottom:5px;
 }
 
+.calendario-scroll{
+    width:100%;
+    overflow-x:auto;
+}
+
 .calendario-grid{
     display:grid;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(7,minmax(120px,1fr));
     gap:7px;
+    min-width:850px;
 }
 
 .dia-semana{
@@ -258,23 +271,19 @@ input:focus,select:focus{
 }
 
 .dia{
-    min-height:135px;
+    min-height:150px;
     border:1px solid #e2e8f0;
     border-radius:10px;
     padding:9px;
-    background:#fff;
-    cursor:pointer;
-    transition:.2s;
+    background:white;
 }
 
 .dia:hover{
     border-color:#2563eb;
-    box-shadow:0 2px 8px #00000010;
 }
 
 .dia.vazio-dia{
     background:#f8fafc;
-    cursor:default;
 }
 
 .numero-dia{
@@ -283,24 +292,29 @@ input:focus,select:focus{
     margin-bottom:8px;
 }
 
-.dia input{
-    padding:7px;
-    font-size:12px;
-    margin-bottom:5px;
+.dia.hoje{
+    border:2px solid #2563eb;
 }
 
 .dia label{
     display:block;
     font-size:10px;
     color:#64748b;
-    margin-bottom:2px;
+    margin-bottom:3px;
+}
+
+.dia input{
+    padding:8px;
+    font-size:12px;
+    margin-bottom:7px;
 }
 
 .resultado-dia{
     font-size:11px;
     font-weight:bold;
-    margin-top:4px;
-    line-height:1.3;
+    margin-top:3px;
+    line-height:1.4;
+    min-height:30px;
 }
 
 .faltou{
@@ -319,9 +333,30 @@ input:focus,select:focus{
     color:#94a3b8;
 }
 
-.dia.hoje{
-    border:2px solid #2563eb;
+.dia.meta-nao{
+    background:#fff7f7;
 }
+
+.dia.meta-passou{
+    background:#f0fdf4;
+}
+
+.dia.meta-bateu{
+    background:#eff6ff;
+}
+
+.dica-diario{
+    background:#f8fafc;
+    border-left:4px solid #2563eb;
+    padding:12px;
+    margin-bottom:18px;
+    border-radius:8px;
+    color:#475569;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* LISTAS */
 
 .lista{
     display:flex;
@@ -414,15 +449,6 @@ footer{
         grid-template-columns:1fr 1fr;
     }
 
-    .calendario-grid{
-        gap:4px;
-    }
-
-    .dia{
-        min-height:125px;
-        padding:6px;
-    }
-
     .calendario-resumo{
         grid-template-columns:1fr 1fr 1fr;
     }
@@ -473,20 +499,7 @@ footer{
     }
 
     .calendario{
-        padding:10px;
-    }
-
-    .calendario-grid{
-        grid-template-columns:repeat(7, minmax(45px,1fr));
-        overflow-x:auto;
-    }
-
-    .calendario{
-        overflow-x:auto;
-    }
-
-    .calendario-grid{
-        width:700px;
+        padding:12px;
     }
 
     .calendario-resumo{
@@ -496,6 +509,7 @@ footer{
     .calendario-topo{
         flex-direction:column;
         align-items:flex-start;
+        gap:5px;
     }
 }
 </style>
@@ -550,7 +564,6 @@ footer{
         </div>
 
         <div class="meta-info">
-
             <span id="conseguido">
                 Conseguido: R$ 0,00
             </span>
@@ -558,7 +571,6 @@ footer{
             <span id="faltando">
                 Falta: R$ 0,00
             </span>
-
         </div>
 
     </div>
@@ -599,8 +611,9 @@ footer{
 
             <h3>📊 Como está sua situação?</h3>
 
-            <p id="mensagem" style="line-height:1.7;color:#475569">
-                Adicione suas despesas e entradas para começar.
+            <p id="mensagem"
+               style="line-height:1.7;color:#475569">
+                Adicione suas despesas, dívidas e metas no controle diário para começar.
             </p>
 
         </div>
@@ -623,40 +636,87 @@ footer{
 
             </div>
 
+            <div class="dica-diario">
+
+                <strong>Como usar:</strong><br>
+
+                Em cada dia coloque a
+                <strong>meta que você quer fazer</strong>.
+
+                Depois coloque quanto você
+                <strong>realmente fez</strong>.
+
+                O sistema mostra automaticamente:
+
+                <strong style="color:#dc2626">
+                    quanto faltou
+                </strong>
+
+                ou
+
+                <strong style="color:#16a34a">
+                    quanto passou
+                </strong>.
+
+                Os valores são salvos automaticamente no Firestore.
+
+            </div>
+
             <div class="calendario-resumo">
 
                 <div class="resumo-dia">
+
                     <small>🎯 Meta total</small>
-                    <strong id="metaTotalMes">R$ 0,00</strong>
+
+                    <strong id="metaTotalMes">
+                        R$ 0,00
+                    </strong>
+
                 </div>
 
                 <div class="resumo-dia">
+
                     <small>💰 Total feito</small>
-                    <strong id="feitoTotalMes" class="verde">R$ 0,00</strong>
+
+                    <strong
+                        id="feitoTotalMes"
+                        class="verde">
+                        R$ 0,00
+                    </strong>
+
                 </div>
 
                 <div class="resumo-dia">
+
                     <small>📊 Resultado</small>
-                    <strong id="resultadoTotalMes">R$ 0,00</strong>
+
+                    <strong id="resultadoTotalMes">
+                        R$ 0,00
+                    </strong>
+
                 </div>
 
             </div>
 
-            <div class="calendario-grid">
+            <div class="calendario-scroll">
 
-                <div class="dia-semana">DOM</div>
-                <div class="dia-semana">SEG</div>
-                <div class="dia-semana">TER</div>
-                <div class="dia-semana">QUA</div>
-                <div class="dia-semana">QUI</div>
-                <div class="dia-semana">SEX</div>
-                <div class="dia-semana">SÁB</div>
+                <div class="calendario-grid">
 
-            </div>
+                    <div class="dia-semana">DOM</div>
+                    <div class="dia-semana">SEG</div>
+                    <div class="dia-semana">TER</div>
+                    <div class="dia-semana">QUA</div>
+                    <div class="dia-semana">QUI</div>
+                    <div class="dia-semana">SEX</div>
+                    <div class="dia-semana">SÁB</div>
 
-            <div
-                class="calendario-grid"
-                id="diasCalendario">
+                </div>
+
+                <div
+                    class="calendario-grid"
+                    id="diasCalendario">
+                </div>
+
             </div>
 
         </div>
@@ -681,13 +741,16 @@ footer{
                     id="entradaValor"
                     type="number"
                     step="0.01"
+                    min="0"
                     placeholder="Valor">
 
                 <input
                     id="entradaData"
                     type="date">
 
-                <button class="btn" onclick="addEntrada()">
+                <button
+                    class="btn"
+                    onclick="addEntrada()">
                     + Adicionar
                 </button>
 
@@ -695,7 +758,10 @@ footer{
 
         </div>
 
-        <div id="listaEntradas" class="lista"></div>
+        <div
+            id="listaEntradas"
+            class="lista">
+        </div>
 
     </div>
 
@@ -717,6 +783,7 @@ footer{
                     id="fixaValor"
                     type="number"
                     step="0.01"
+                    min="0"
                     placeholder="Valor">
 
                 <input
@@ -726,7 +793,9 @@ footer{
                     max="31"
                     placeholder="Dia vencimento">
 
-                <button class="btn" onclick="addFixa()">
+                <button
+                    class="btn"
+                    onclick="addFixa()">
                     + Adicionar
                 </button>
 
@@ -734,11 +803,14 @@ footer{
 
         </div>
 
-        <div id="listaFixas" class="lista"></div>
+        <div
+            id="listaFixas"
+            class="lista">
+        </div>
 
     </div>
 
-    <!-- DIÁRIAS -->
+    <!-- DESPESAS -->
 
     <div id="diarias" class="section">
 
@@ -756,6 +828,7 @@ footer{
                     id="diariaValor"
                     type="number"
                     step="0.01"
+                    min="0"
                     placeholder="Valor">
 
                 <input
@@ -774,7 +847,9 @@ footer{
 
                 </select>
 
-                <button class="btn" onclick="addDiaria()">
+                <button
+                    class="btn"
+                    onclick="addDiaria()">
                     + Adicionar
                 </button>
 
@@ -782,11 +857,14 @@ footer{
 
         </div>
 
-        <div id="listaDiarias" class="lista"></div>
+        <div
+            id="listaDiarias"
+            class="lista">
+        </div>
 
     </div>
 
-    <!-- DIVIDAS -->
+    <!-- DÍVIDAS -->
 
     <div id="dividas" class="section">
 
@@ -804,19 +882,23 @@ footer{
                     id="dividaValor"
                     type="number"
                     step="0.01"
+                    min="0"
                     placeholder="Valor total">
 
                 <input
                     id="dividaPago"
                     type="number"
                     step="0.01"
+                    min="0"
                     placeholder="Valor já pago">
 
                 <input
                     id="dividaVencimento"
                     type="date">
 
-                <button class="btn" onclick="addDivida()">
+                <button
+                    class="btn"
+                    onclick="addDivida()">
                     + Adicionar
                 </button>
 
@@ -824,7 +906,10 @@ footer{
 
         </div>
 
-        <div id="listaDividas" class="lista"></div>
+        <div
+            id="listaDividas"
+            class="lista">
+        </div>
 
     </div>
 
@@ -834,7 +919,9 @@ footer{
     Minha Meta Financeira © 2026
 </footer>
 
-<div class="status" id="status">
+<div
+    class="status"
+    id="status">
     ☁️ Conectando...
 </div>
 
@@ -851,9 +938,9 @@ import {
     addDoc,
     deleteDoc,
     updateDoc,
+    setDoc,
     doc,
-    onSnapshot,
-    setDoc
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -861,39 +948,68 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
+    apiKey:
+        "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
 
-    authDomain: "financas-3ca07.firebaseapp.com",
+    authDomain:
+        "financas-3ca07.firebaseapp.com",
 
-    projectId: "financas-3ca07",
+    projectId:
+        "financas-3ca07",
 
-    storageBucket: "financas-3ca07.firebasestorage.app",
+    storageBucket:
+        "financas-3ca07.firebasestorage.app",
 
-    messagingSenderId: "1049971527541",
+    messagingSenderId:
+        "1049971527541",
 
-    appId: "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
+    appId:
+        "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
 
-    measurementId: "G-XB06NHKWFX"
+    measurementId:
+        "G-XB06NHKWFX"
 
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const db =
+    getFirestore(app);
 
 
 /*
     USUÁRIO PESSOAL
 
-    Tudo ficará salvo dentro deste caminho.
+    Todos os dados ficam dentro de:
+
+    usuarios/usuario-pessoal/
+
+    Coleções:
+
+    entradas
+    fixas
+    diarias
+    dividas
+    metasDiarias
 */
 
-const BASE = "usuarios/usuario-pessoal";
+const BASE =
+    "usuarios/usuario-pessoal";
 
 
-const col = nome =>
-    collection(db,BASE,nome);
+function col(nome){
 
+    return collection(
+        db,
+        BASE,
+        nome
+    );
+
+}
+
+
+/* DADOS */
 
 let dados = {
 
@@ -911,21 +1027,25 @@ let dados = {
 const mesInput =
     document.getElementById("mes");
 
-const agora = new Date();
-
-mesInput.value =
-    agora.getFullYear()+"-"+
-    String(agora.getMonth()+1).padStart(2,"0");
-
+const agora =
+    new Date();
 
 const hoje =
     agora.getFullYear()+"-"+
     String(agora.getMonth()+1).padStart(2,"0")+"-"+
     String(agora.getDate()).padStart(2,"0");
 
+mesInput.value =
+    agora.getFullYear()+"-"+
+    String(agora.getMonth()+1).padStart(2,"0");
 
-document.getElementById("entradaData").value = hoje;
-document.getElementById("diariaData").value = hoje;
+document.getElementById(
+    "entradaData"
+).value = hoje;
+
+document.getElementById(
+    "diariaData"
+).value = hoje;
 
 
 /* STATUS */
@@ -935,10 +1055,13 @@ function status(texto,erro=false){
     const el =
         document.getElementById("status");
 
-    el.textContent = texto;
+    el.textContent =
+        texto;
 
     el.style.background =
-        erro ? "#dc2626" : "#16a34a";
+        erro
+        ? "#dc2626"
+        : "#16a34a";
 
 }
 
@@ -961,28 +1084,40 @@ function dinheiro(valor){
 
 /* ABAS */
 
-window.aba = function(id,botao){
+window.aba =
+function(id,botao){
 
     document
         .querySelectorAll(".section")
-        .forEach(x =>
-            x.classList.remove("active")
-        );
+        .forEach(el=>{
+            el.classList.remove("active");
+        });
 
     document
         .querySelectorAll(".tabs button")
-        .forEach(x =>
-            x.classList.remove("active")
-        );
+        .forEach(el=>{
+            el.classList.remove("active");
+        });
 
-    document
-        .getElementById(id)
-        .classList.add("active");
+    const secao =
+        document.getElementById(id);
 
-    botao.classList.add("active");
+    if(secao){
+
+        secao.classList.add("active");
+
+    }
+
+    if(botao){
+
+        botao.classList.add("active");
+
+    }
 
     if(id==="calendario"){
+
         renderCalendario();
+
     }
 
 };
@@ -990,28 +1125,36 @@ window.aba = function(id,botao){
 
 /* ENTRADA */
 
-window.addEntrada = async function(){
+window.addEntrada =
+async function(){
 
     const descricao =
-        document.getElementById(
-            "entradaDescricao"
-        ).value.trim();
+        document
+        .getElementById("entradaDescricao")
+        .value
+        .trim();
 
     const valor =
         Number(
-            document.getElementById(
-                "entradaValor"
-            ).value
+            document
+            .getElementById("entradaValor")
+            .value
         );
 
     const data =
-        document.getElementById(
-            "entradaData"
-        ).value;
+        document
+        .getElementById("entradaData")
+        .value;
 
-    if(!descricao || valor<=0 || !data){
+    if(
+        !descricao ||
+        valor<=0 ||
+        !data
+    ){
 
-        alert("Preencha todos os campos.");
+        alert(
+            "Preencha todos os campos."
+        );
 
         return;
 
@@ -1022,9 +1165,9 @@ window.addEntrada = async function(){
         await addDoc(
             col("entradas"),
             {
-                descricao,
-                valor,
-                data,
+                descricao:descricao,
+                valor:valor,
+                data:data,
                 criadoEm:Date.now()
             }
         );
@@ -1037,16 +1180,17 @@ window.addEntrada = async function(){
             "entradaValor"
         ).value="";
 
-        status("☁️ Entrada salva!");
+        status(
+            "☁️ Entrada salva!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao salvar",true);
-
-        alert(
-            "Erro ao salvar. Verifique as regras do Firestore."
+        status(
+            "❌ Erro ao salvar",
+            true
         );
 
     }
@@ -1056,28 +1200,35 @@ window.addEntrada = async function(){
 
 /* FIXA */
 
-window.addFixa = async function(){
+window.addFixa =
+async function(){
 
     const nome =
-        document.getElementById(
-            "fixaNome"
-        ).value.trim();
+        document
+        .getElementById("fixaNome")
+        .value
+        .trim();
 
     const valor =
         Number(
-            document.getElementById(
-                "fixaValor"
-            ).value
+            document
+            .getElementById("fixaValor")
+            .value
         );
 
     const vencimento =
-        document.getElementById(
-            "fixaVencimento"
-        ).value;
+        document
+        .getElementById("fixaVencimento")
+        .value;
 
-    if(!nome || valor<=0){
+    if(
+        !nome ||
+        valor<=0
+    ){
 
-        alert("Informe nome e valor.");
+        alert(
+            "Informe nome e valor."
+        );
 
         return;
 
@@ -1088,9 +1239,9 @@ window.addFixa = async function(){
         await addDoc(
             col("fixas"),
             {
-                nome,
-                valor,
-                vencimento,
+                nome:nome,
+                valor:valor,
+                vencimento:vencimento,
                 pago:false,
                 criadoEm:Date.now()
             }
@@ -1108,48 +1259,61 @@ window.addFixa = async function(){
             "fixaVencimento"
         ).value="";
 
-        status("☁️ Despesa fixa salva!");
+        status(
+            "☁️ Despesa fixa salva!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao salvar",true);
+        status(
+            "❌ Erro ao salvar",
+            true
+        );
 
     }
 
 };
 
 
-/* DIÁRIA */
+/* DESPESA */
 
-window.addDiaria = async function(){
+window.addDiaria =
+async function(){
 
     const descricao =
-        document.getElementById(
-            "diariaDescricao"
-        ).value.trim();
+        document
+        .getElementById("diariaDescricao")
+        .value
+        .trim();
 
     const valor =
         Number(
-            document.getElementById(
-                "diariaValor"
-            ).value
+            document
+            .getElementById("diariaValor")
+            .value
         );
 
     const data =
-        document.getElementById(
-            "diariaData"
-        ).value;
+        document
+        .getElementById("diariaData")
+        .value;
 
     const categoria =
-        document.getElementById(
-            "diariaCategoria"
-        ).value;
+        document
+        .getElementById("diariaCategoria")
+        .value;
 
-    if(!descricao || valor<=0 || !data){
+    if(
+        !descricao ||
+        valor<=0 ||
+        !data
+    ){
 
-        alert("Preencha todos os campos.");
+        alert(
+            "Preencha todos os campos."
+        );
 
         return;
 
@@ -1160,10 +1324,10 @@ window.addDiaria = async function(){
         await addDoc(
             col("diarias"),
             {
-                descricao,
-                valor,
-                data,
-                categoria,
+                descricao:descricao,
+                valor:valor,
+                data:data,
+                categoria:categoria,
                 criadoEm:Date.now()
             }
         );
@@ -1176,13 +1340,18 @@ window.addDiaria = async function(){
             "diariaValor"
         ).value="";
 
-        status("☁️ Despesa salva!");
+        status(
+            "☁️ Despesa salva!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao salvar",true);
+        status(
+            "❌ Erro ao salvar",
+            true
+        );
 
     }
 
@@ -1191,49 +1360,62 @@ window.addDiaria = async function(){
 
 /* DÍVIDA */
 
-window.addDivida = async function(){
+window.addDivida =
+async function(){
 
     const nome =
-        document.getElementById(
-            "dividaNome"
-        ).value.trim();
+        document
+        .getElementById("dividaNome")
+        .value
+        .trim();
 
     const valor =
         Number(
-            document.getElementById(
-                "dividaValor"
-            ).value
+            document
+            .getElementById("dividaValor")
+            .value
         );
 
     const pago =
         Number(
-            document.getElementById(
-                "dividaPago"
-            ).value
+            document
+            .getElementById("dividaPago")
+            .value
         ) || 0;
 
     const vencimento =
-        document.getElementById(
-            "dividaVencimento"
-        ).value;
+        document
+        .getElementById("dividaVencimento")
+        .value;
 
-    if(!nome || valor<=0){
+    if(
+        !nome ||
+        valor<=0
+    ){
 
-        alert("Informe nome e valor.");
+        alert(
+            "Informe nome e valor."
+        );
 
         return;
 
     }
+
+    const pagoFinal =
+        Math.min(
+            Math.max(pago,0),
+            valor
+        );
 
     try{
 
         await addDoc(
             col("dividas"),
             {
-                nome,
-                valor,
-                pago,
-                vencimento,
+                nome:nome,
+                valor:valor,
+                pago:pagoFinal,
+                vencimento:vencimento,
                 criadoEm:Date.now()
             }
         );
@@ -1254,25 +1436,38 @@ window.addDivida = async function(){
             "dividaVencimento"
         ).value="";
 
-        status("☁️ Dívida salva!");
+        status(
+            "☁️ Dívida salva!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao salvar",true);
+        status(
+            "❌ Erro ao salvar",
+            true
+        );
 
     }
 
 };
 
 
-/* EXCLUSÃO */
+/* EXCLUIR */
 
-window.excluir = async function(tipo,id){
+window.excluir =
+async function(tipo,id){
 
-    if(!confirm("Deseja excluir este registro?"))
+    if(
+        !confirm(
+            "Deseja excluir este registro?"
+        )
+    ){
+
         return;
+
+    }
 
     try{
 
@@ -1285,13 +1480,18 @@ window.excluir = async function(tipo,id){
             )
         );
 
-        status("🗑️ Registro excluído!");
+        status(
+            "🗑️ Registro excluído!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao excluir",true);
+        status(
+            "❌ Erro ao excluir",
+            true
+        );
 
     }
 
@@ -1300,7 +1500,8 @@ window.excluir = async function(tipo,id){
 
 /* PAGAR FIXA */
 
-window.pagarFixa = async function(id,pago){
+window.pagarFixa =
+async function(id,pago){
 
     try{
 
@@ -1316,9 +1517,18 @@ window.pagarFixa = async function(id,pago){
             }
         );
 
+        status(
+            "☁️ Atualizado!"
+        );
+
     }catch(e){
 
         console.error(e);
+
+        status(
+            "❌ Erro ao atualizar",
+            true
+        );
 
     }
 
@@ -1327,7 +1537,12 @@ window.pagarFixa = async function(id,pago){
 
 /* PAGAR DÍVIDA */
 
-window.pagarDivida = async function(id,valorPago,valorTotal){
+window.pagarDivida =
+async function(
+    id,
+    valorPago,
+    valorTotal
+){
 
     const valor =
         Number(
@@ -1337,8 +1552,14 @@ window.pagarDivida = async function(id,valorPago,valorTotal){
             )
         );
 
-    if(valor<=0)
+    if(
+        !valor ||
+        valor<=0
+    ){
+
         return;
+
+    }
 
     const novoValor =
         Math.min(
@@ -1360,9 +1581,18 @@ window.pagarDivida = async function(id,valorPago,valorTotal){
             }
         );
 
+        status(
+            "☁️ Pagamento salvo!"
+        );
+
     }catch(e){
 
         console.error(e);
+
+        status(
+            "❌ Erro ao pagar",
+            true
+        );
 
     }
 
@@ -1371,11 +1601,11 @@ window.pagarDivida = async function(id,valorPago,valorTotal){
 
 /* =====================================================
    METAS DIÁRIAS
-===================================================== */
+   ===================================================== */
 
 
 /*
-    Cada documento terá o ID igual à data.
+    Cada dia possui um documento próprio.
 
     Exemplo:
 
@@ -1389,44 +1619,62 @@ window.pagarDivida = async function(id,valorPago,valorTotal){
     data
     meta
     feito
+    atualizadoEm
 */
 
-async function salvarDia(data,meta,feito){
+
+async function salvarDia(
+    data,
+    meta,
+    feito
+){
 
     try{
 
         await setDoc(
+
             doc(
                 db,
                 BASE,
                 "metasDiarias",
                 data
             ),
+
             {
-                data,
+                data:data,
                 meta:Number(meta)||0,
                 feito:Number(feito)||0,
                 atualizadoEm:Date.now()
             },
+
             {
                 merge:true
             }
+
         );
 
-        status("☁️ Meta do dia salva!");
+        status(
+            "☁️ Meta do dia salva!"
+        );
 
     }catch(e){
 
         console.error(e);
 
-        status("Erro ao salvar meta",true);
+        status(
+            "❌ Erro ao salvar meta",
+            true
+        );
 
     }
 
 }
 
 
-window.salvarMetaDia = function(data){
+/* SALVAR DIA */
+
+window.salvarMetaDia =
+function(data){
 
     const metaInput =
         document.getElementById(
@@ -1438,14 +1686,24 @@ window.salvarMetaDia = function(data){
             "feito-"+data
         );
 
-    if(!metaInput || !feitoInput)
+    if(
+        !metaInput ||
+        !feitoInput
+    ){
+
         return;
 
+    }
+
     const meta =
-        Number(metaInput.value)||0;
+        Number(
+            metaInput.value
+        ) || 0;
 
     const feito =
-        Number(feitoInput.value)||0;
+        Number(
+            feitoInput.value
+        ) || 0;
 
     salvarDia(
         data,
@@ -1457,11 +1715,21 @@ window.salvarMetaDia = function(data){
 
 
 /*
-    Atualiza o resultado visual
-    do dia sem precisar esperar o Firestore.
+    Salva ao sair do campo.
 */
 
-window.atualizarDiaVisual = function(data){
+window.salvarAoSair =
+function(data){
+
+    salvarMetaDia(data);
+
+};
+
+
+/* ATUALIZAR VISUAL DO DIA */
+
+window.atualizarDiaVisual =
+function(data){
 
     const metaInput =
         document.getElementById(
@@ -1478,23 +1746,56 @@ window.atualizarDiaVisual = function(data){
             "resultado-"+data
         );
 
-    if(!metaInput || !feitoInput || !resultado)
+    const diaElement =
+        document.getElementById(
+            "dia-"+data
+        );
+
+    if(
+        !metaInput ||
+        !feitoInput ||
+        !resultado
+    ){
+
         return;
 
+    }
+
     const meta =
-        Number(metaInput.value)||0;
+        Number(
+            metaInput.value
+        ) || 0;
 
     const feito =
-        Number(feitoInput.value)||0;
+        Number(
+            feitoInput.value
+        ) || 0;
+
+
+    resultado.className =
+        "resultado-dia";
+
+    if(diaElement){
+
+        diaElement.classList.remove(
+            "meta-nao",
+            "meta-passou",
+            "meta-bateu"
+        );
+
+    }
 
 
     if(meta<=0){
 
-        resultado.className =
-            "resultado-dia sem-meta";
+        resultado.classList.add(
+            "sem-meta"
+        );
 
         resultado.textContent =
             "Defina sua meta";
+
+        atualizarResumoCalendario();
 
         return;
 
@@ -1507,27 +1808,58 @@ window.atualizarDiaVisual = function(data){
 
     if(diferenca<0){
 
-        resultado.className =
-            "resultado-dia faltou";
+        resultado.classList.add(
+            "faltou"
+        );
 
         resultado.textContent =
-            "🔴 Faltou "+dinheiro(Math.abs(diferenca));
+            "🔴 Faltou "+
+            dinheiro(
+                Math.abs(diferenca)
+            );
+
+        if(diaElement){
+
+            diaElement.classList.add(
+                "meta-nao"
+            );
+
+        }
 
     }else if(diferenca>0){
 
-        resultado.className =
-            "resultado-dia passou";
+        resultado.classList.add(
+            "passou"
+        );
 
         resultado.textContent =
-            "🟢 Passou "+dinheiro(diferenca);
+            "🟢 Passou "+
+            dinheiro(diferenca);
+
+        if(diaElement){
+
+            diaElement.classList.add(
+                "meta-passou"
+            );
+
+        }
 
     }else{
 
-        resultado.className =
-            "resultado-dia bateu";
+        resultado.classList.add(
+            "bateu"
+        );
 
         resultado.textContent =
             "🔵 Meta atingida!";
+
+        if(diaElement){
+
+            diaElement.classList.add(
+                "meta-bateu"
+            );
+
+        }
 
     }
 
@@ -1536,30 +1868,18 @@ window.atualizarDiaVisual = function(data){
 };
 
 
-/*
-    Salva automaticamente quando o usuário
-    termina de preencher o campo.
-*/
-
-window.salvarAoSair = function(data){
-
-    salvarMetaDia(
-        data
-    );
-
-};
-
-
-/* RENDERIZAR CALENDÁRIO */
+/* CALENDÁRIO */
 
 function renderCalendario(){
 
     const mes =
         mesInput.value;
 
-    if(!mes)
+    if(!mes){
+
         return;
 
+    }
 
     const partes =
         mes.split("-");
@@ -1588,6 +1908,7 @@ function renderCalendario(){
 
 
     const nomesMeses = [
+
         "Janeiro",
         "Fevereiro",
         "Março",
@@ -1600,13 +1921,16 @@ function renderCalendario(){
         "Outubro",
         "Novembro",
         "Dezembro"
+
     ];
 
 
     document.getElementById(
         "mesCalendario"
     ).textContent =
-        nomesMeses[mesNumero-1]+" "+ano;
+        nomesMeses[mesNumero-1]+
+        " "+
+        ano;
 
 
     const calendario =
@@ -1618,7 +1942,7 @@ function renderCalendario(){
     let html="";
 
 
-    /* ESPAÇOS ANTES DO PRIMEIRO DIA */
+    /* ESPAÇOS */
 
     for(
         let i=0;
@@ -1643,8 +1967,10 @@ function renderCalendario(){
 
         const data =
             ano+"-"+
-            String(mesNumero).padStart(2,"0")+"-"+
-            String(dia).padStart(2,"0");
+            String(mesNumero)
+                .padStart(2,"0")+"-"+
+            String(dia)
+                .padStart(2,"0");
 
 
         const registro =
@@ -1671,6 +1997,8 @@ function renderCalendario(){
         let resultadoClasse =
             "resultado-dia sem-meta";
 
+        let classeDia="";
+
 
         if(meta>0){
 
@@ -1686,8 +2014,13 @@ function renderCalendario(){
                 resultadoTexto =
                     "🔴 Faltou "+
                     dinheiro(
-                        Math.abs(diferenca)
+                        Math.abs(
+                            diferenca
+                        )
                     );
+
+                classeDia =
+                    "meta-nao";
 
             }else if(diferenca>0){
 
@@ -1700,6 +2033,9 @@ function renderCalendario(){
                         diferenca
                     );
 
+                classeDia =
+                    "meta-passou";
+
             }else{
 
                 resultadoClasse =
@@ -1707,6 +2043,9 @@ function renderCalendario(){
 
                 resultadoTexto =
                     "🔵 Meta atingida!";
+
+                classeDia =
+                    "meta-bateu";
 
             }
 
@@ -1719,15 +2058,23 @@ function renderCalendario(){
 
         html+=`
 
-            <div class="dia ${ehHoje ? "hoje" : ""}">
+            <div
+                class="dia ${ehHoje ? "hoje" : ""} ${classeDia}"
+                id="dia-${data}">
 
                 <div class="numero-dia">
+
                     ${dia}
-                    ${ehHoje ? " • Hoje" : ""}
+
+                    ${ehHoje
+                        ? " • Hoje"
+                        : ""}
+
                 </div>
 
+
                 <label>
-                    🎯 Meta
+                    🎯 Meta do dia
                 </label>
 
                 <input
@@ -1735,15 +2082,16 @@ function renderCalendario(){
                     type="number"
                     step="0.01"
                     min="0"
-                    placeholder="R$ 0"
+                    placeholder="R$ 0,00"
                     value="${meta || ""}"
                     oninput="atualizarDiaVisual('${data}')"
-                    onchange="salvarAoSair('${data}')"
+                    onchange="salvarMetaDia('${data}')"
                     onblur="salvarAoSair('${data}')"
                 >
 
+
                 <label>
-                    💰 Fiz
+                    💰 Quanto fiz
                 </label>
 
                 <input
@@ -1751,17 +2099,20 @@ function renderCalendario(){
                     type="number"
                     step="0.01"
                     min="0"
-                    placeholder="R$ 0"
+                    placeholder="R$ 0,00"
                     value="${feito || ""}"
                     oninput="atualizarDiaVisual('${data}')"
-                    onchange="salvarAoSair('${data}')"
+                    onchange="salvarMetaDia('${data}')"
                     onblur="salvarAoSair('${data}')"
                 >
+
 
                 <div
                     id="resultado-${data}"
                     class="${resultadoClasse}">
+
                     ${resultadoTexto}
+
                 </div>
 
             </div>
@@ -1871,26 +2222,40 @@ function atualizarResumoCalendario(){
 function ouvir(tipo){
 
     onSnapshot(
+
         col(tipo),
+
         snapshot=>{
 
             dados[tipo] =
                 snapshot.docs.map(
                     d=>({
+
                         id:d.id,
                         ...d.data()
+
                     })
                 );
 
+
             atualizar();
 
-            if(tipo==="metasDiarias"){
+
+            if(
+                tipo==="metasDiarias"
+            ){
+
                 renderCalendario();
+
             }
 
-            status("☁️ Sincronizado");
+
+            status(
+                "☁️ Sincronizado"
+            );
 
         },
+
         erro=>{
 
             console.error(erro);
@@ -1901,10 +2266,13 @@ function ouvir(tipo){
             );
 
         }
+
     );
 
 }
 
+
+/* INICIAR LISTENERS */
 
 ouvir("entradas");
 ouvir("fixas");
@@ -1923,1865 +2291,17 @@ function atualizar(){
 
     const entradas =
         dados.entradas
-        .filter(x =>
-            x.data &&
-            x.data.startsWith(mes)
+        .filter(
+            x =>
+                x.data &&
+                x.data.startsWith(mes)
         )
-        .reduce(
-            (s,x)=>s+Number(x.valor),
-            0
-        );
-
-
-    const diarias =
-        dados.diarias
-        .filter(x =>
-            x.data &&
-            x.data.startsWith(mes)
-        )
-        .reduce(
-            (s,x)=>s+Number(x.valor),
-            0
-        );
-
-
-    const fixas =
-        dados.fixas
-        .reduce(
-            (s,x)=>s+Number(x.valor),
-            0
-        );
-
-
-    const dividas =
-        dados.dividas
         .reduce(
             (s,x)=>
                 s+
-                Math.max(
-                    Number(x.valor)-
-                    Number(x.pago||0),
-                    0
-                ),
+                Number(x.valor||0),
             0
         );
-
-
-    const total =
-        fixas+
-        diarias+
-        dividas;
-
-
-    const falta =
-        Math.max(
-            total-entradas,
-            0
-        );
-
-
-    /* DIAS */
-
-    const hojeData =
-        new Date();
-
-    const ano =
-        Number(mes.split("-")[0]);
-
-    const mesNumero =
-        Number(mes.split("-")[1]);
-
-
-    let diasRestantes;
-
-
-    if(
-        hojeData.getFullYear()===ano &&
-        hojeData.getMonth()+1===mesNumero
-    ){
-
-        const ultimo =
-            new Date(
-                ano,
-                mesNumero,
-                0
-            ).getDate();
-
-        diasRestantes =
-            Math.max(
-                ultimo-
-                hojeData.getDate()+
-                1,
-                1
-            );
-
-    }else{
-
-        diasRestantes =
-            new Date(
-                ano,
-                mesNumero,
-                0
-            ).getDate();
-
-    }
-
-
-    const meta =
-        falta/diasRestantes;
-
-
-    document.getElementById(
-        "fixasTotal"
-    ).textContent =
-        dinheiro(fixas);
-
-
-    document.getElementById(
-        "diariasTotal"
-    ).textContent =
-        dinheiro(diarias);
-
-
-    document.getElementById(
-        "dividasTotal"
-    ).textContent =
-        dinheiro(dividas);
-
-
-    document.getElementById(
-        "entradasTotal"
-    ).textContent =
-        dinheiro(entradas);
-
-
-    document.getElementById(
-        "meta"
-    ).textContent =
-        dinheiro(meta);
-
-
-    document.getElementById(
-        "conseguido"
-    ).textContent =
-        "Conseguido: "+dinheiro(entradas);
-
-
-    document.getElementById(
-        "faltando"
-    ).textContent =
-        "Falta: "+dinheiro(falta);
-
-
-    const percentual =
-        total>0
-        ? Math.min(
-            entradas/total*100,
-            100
-        )
-        : 0;
-
-
-    document.getElementById(
-        "barra"
-    ).style.width =
-        percentual+"%";
-
-
-    let mensagem;
-
-
-    if(total===0){
-
-        mensagem =
-            "Comece cadastrando suas despesas, dívidas e entradas.";
-
-    }else if(falta===0){
-
-        mensagem =
-            "🎉 Parabéns! Você já conseguiu cobrir o valor necessário deste mês.";
-
-    }else{
-
-        mensagem =
-            "Você precisa conseguir aproximadamente "+
-            dinheiro(meta)+
-            " por dia para alcançar sua meta.";
-
-    }
-
-
-    document.getElementById(
-        "mensagem"
-    ).textContent =
-        mensagem;
-
-
-    renderizar();
-
-}
-
-
-/* RENDER */
-
-function renderizar(){
-
-    /* ENTRADAS */
-
-    const le =
-        document.getElementById(
-            "listaEntradas"
-        );
-
-    const entradas =
-        dados.entradas
-        .filter(x =>
-            x.data &&
-            x.data.startsWith(
-                mesInput.value
-            )
-        )
-        .sort(
-            (a,b)=>
-                (b.data||"")
-                .localeCompare(a.data||"")
-        );
-
-
-    le.innerHTML =
-        entradas.length
-        ?
-        entradas.map(x=>`
-
-        <div class="item">
-
-            <div class="info">
-
-                <strong>
-                    ${x.descricao}
-                </strong>
-
-                <small>
-                    ${x.data}
-                </small>
-
-            </div>
-
-            <div class="valor verde">
-                + ${dinheiro(x.valor)}
-            </div>
-
-            <button
-                class="excluir"
-                onclick="excluir('entradas','${x.id}')">
-                🗑️
-            </button>
-
-        </div>
-
-        `).join("")
-        :
-        '<div class="vazio">Nenhuma entrada neste mês.</div>';
-
-
-    /* FIXAS */
-
-    const lf =
-        document.getElementById(
-            "listaFixas"
-        );
-
-
-    lf.innerHTML =
-        dados.fixas.length
-        ?
-        dados.fixas.map(x=>`
-
-        <div class="item">
-
-            <div class="info">
-
-                <strong>
-                    ${x.nome}
-                </strong>
-
-                <small>
-                    Vencimento:
-                    dia ${x.vencimento||"-"}
-                    ·
-                    ${x.pago ? "Pago" : "Pendente"}
-                </small>
-
-            </div>
-
-            <div class="valor">
-                ${dinheiro(x.valor)}
-            </div>
-
-            <div class="acoes">
-
-                <button
-                    class="pagar"
-                    onclick="pagarFixa('${x.id}',${x.pago})">
-                    ${x.pago ? "Desmarcar" : "Pagar"}
-                </button>
-
-                <button
-                    class="excluir"
-                    onclick="excluir('fixas','${x.id}')">
-                    🗑️
-                </button>
-
-            </div>
-
-        </div>
-
-        `).join("")
-        :
-        '<div class="vazio">Nenhuma despesa fixa.</div>';
-
-
-    /* DIÁRIAS */
-
-    const ld =
-        document.getElementById(
-            "listaDiarias"
-        );
-
-
-    const diarias =
-        dados.diarias
-        .filter(x =>
-            x.data &&
-            x.data.startsWith(
-                mesInput.value
-            )
-        )
-        .sort(
-            (a,b)=>
-                (b.data||"")
-                .localeCompare(a.data||"")
-        );
-
-
-    ld.innerHTML =
-        diarias.length
-        ?
-        diarias.map(x=>`
-
-        <div class="item">
-
-            <div class="info">
-
-                <strong>
-                    ${x.descricao}
-                </strong>
-
-                <small>
-                    ${x.categoria}
-                    ·
-                    ${x.data}
-                </small>
-
-            </div>
-
-            <div class="valor laranja">
-                ${dinheiro(x.valor)}
-            </div>
-
-            <button
-                class="excluir"
-                onclick="excluir('diarias','${x.id}')">
-                🗑️
-            </button>
-
-        </div>
-
-        `).join("")
-        :
-        '<div class="vazio">Nenhuma despesa neste mês.</div>';
-
-
-    /* DÍVIDAS */
-
-    const ldiv =
-        document.getElementById(
-            "listaDividas"
-        );
-
-
-    ldiv.innerHTML =
-        dados.dividas.length
-        ?
-        dados.dividas.map(x=>{
-
-            const restante =
-                Math.max(
-                    Number(x.valor)-
-                    Number(x.pago||0),
-                    0
-                );
-
-
-            return `
-
-            <div class="item">
-
-                <div class="info">
-
-                    <strong>
-                        ${x.nome}
-                    </strong>
-
-                    <small>
-                        Pago:
-                        ${dinheiro(x.pago)}
-                        · Restante:
-                        ${dinheiro(restante)}
-                    </small>
-
-                </div>
-
-                <div class="valor vermelho">
-                    ${dinheiro(restante)}
-                </div>
-
-                <div class="acoes">
-
-                    <button
-                        class="pagar"
-                        onclick="pagarDivida(
-                            '${x.id}',
-                            ${Number(x.pago||0)},
-                            ${Number(x.valor)}
-                        )">
-                        Pagar
-                    </button>
-
-                    <button
-                        class="excluir"
-                        onclick="excluir('dividas','${x.id}')">
-                        🗑️
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("")
-        :
-        '<div class="vazio">Nenhuma dívida cadastrada.</div>';
-
-}
-
-
-/* TROCA DE MÊS */
-
-mesInput.addEventListener(
-    "change",
-    function(){
-
-        atualizar();
-
-        renderCalendario();
-
-    }
-);
-
-
-/* GARANTE QUE O CALENDÁRIO SEJA ATUALIZADO */
-
-setInterval(
-    ()=>{
-        if(
-            document
-            .getElementById("calendario")
-            .classList
-            .contains("active")
-        ){
-            atualizarResumoCalendario();
-        }
-    },
-    1000
-);
-
-</script>
-
-</body>
-</html>
-    overflow:hidden;
-    margin:15px 0;
-}
-
-.progress div{
-    height:100%;
-    width:0;
-    background:#22c55e;
-    transition:.4s;
-}
-
-.meta-info{
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    color:#d1d5db;
-}
-
-.tabs{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    margin-bottom:20px;
-}
-
-.tabs button{
-    border:0;
-    padding:12px 15px;
-    border-radius:9px;
-    background:white;
-    cursor:pointer;
-    white-space:nowrap;
-}
-
-.tabs button.active{
-    background:#111827;
-    color:white;
-}
-
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
-
-.box{
-    background:white;
-    padding:20px;
-    border-radius:16px;
-    margin-bottom:18px;
-    box-shadow:0 3px 12px #0000000c;
-}
-
-.box h3{
-    margin-bottom:15px;
-}
-
-.form{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-
-input,select{
-    width:100%;
-    padding:12px;
-    border:1px solid #cbd5e1;
-    border-radius:9px;
-    outline:none;
-}
-
-input:focus,select:focus{
-    border-color:#2563eb;
-}
-
-.btn{
-    border:0;
-    background:#2563eb;
-    color:white;
-    border-radius:9px;
-    padding:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.btn:hover{
-    opacity:.9;
-}
-
-.lista{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.item{
-    background:white;
-    padding:16px;
-    border-radius:13px;
-    box-shadow:0 2px 8px #0000000b;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-}
-
-.info strong{
-    display:block;
-    margin-bottom:5px;
-}
-
-.info small{
-    color:#64748b;
-}
-
-.valor{
-    font-weight:bold;
-    white-space:nowrap;
-}
-
-.acoes{
-    display:flex;
-    gap:6px;
-}
-
-.excluir{
-    border:0;
-    background:#fee2e2;
-    color:#dc2626;
-    padding:9px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.pagar{
-    border:0;
-    background:#dcfce7;
-    color:#15803d;
-    padding:9px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.vazio{
-    background:white;
-    padding:30px;
-    text-align:center;
-    color:#64748b;
-    border-radius:13px;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#64748b;
-    font-size:13px;
-}
-
-.status{
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    background:#16a34a;
-    color:white;
-    padding:10px 15px;
-    border-radius:10px;
-    font-size:12px;
-    z-index:1000;
-}
-
-/* CONTROLE DIÁRIO */
-
-.diario-resumo{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:18px;
-}
-
-.diario-card{
-    background:white;
-    padding:18px;
-    border-radius:14px;
-    box-shadow:0 3px 12px #0000000c;
-}
-
-.diario-card span{
-    display:block;
-    color:#64748b;
-    font-size:13px;
-    margin-bottom:7px;
-}
-
-.diario-card strong{
-    font-size:21px;
-}
-
-.tabela-container{
-    overflow-x:auto;
-}
-
-.tabela-diario{
-    width:100%;
-    border-collapse:collapse;
-    min-width:700px;
-}
-
-.tabela-diario th{
-    background:#111827;
-    color:white;
-    padding:12px;
-    text-align:left;
-    font-size:13px;
-}
-
-.tabela-diario td{
-    padding:9px;
-    border-bottom:1px solid #e2e8f0;
-    vertical-align:middle;
-}
-
-.tabela-diario tr:hover{
-    background:#f8fafc;
-}
-
-.tabela-diario input{
-    min-width:120px;
-    padding:9px;
-}
-
-.dia-numero{
-    font-weight:bold;
-    width:70px;
-}
-
-.situacao{
-    font-weight:bold;
-    font-size:13px;
-}
-
-.meta-ok{
-    color:#16a34a;
-}
-
-.meta-nao{
-    color:#dc2626;
-}
-
-.meta-exata{
-    color:#2563eb;
-}
-
-.meta-vazio{
-    color:#64748b;
-}
-
-.diferenca{
-    font-weight:bold;
-    white-space:nowrap;
-}
-
-.linha-ok{
-    background:#f0fdf4;
-}
-
-.linha-nao{
-    background:#fff7f7;
-}
-
-.linha-exata{
-    background:#eff6ff;
-}
-
-.dica-diario{
-    background:#f8fafc;
-    border-left:4px solid #2563eb;
-    padding:12px;
-    margin-bottom:18px;
-    border-radius:8px;
-    color:#475569;
-    font-size:13px;
-    line-height:1.6;
-}
-
-@media(max-width:800px){
-
-    .cards{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .form{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
-
-    .diario-resumo{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:500px){
-
-    .container{
-        padding:12px;
-    }
-
-    .cards{
-        gap:9px;
-    }
-
-    .card{
-        padding:14px;
-    }
-
-    .card h2{
-        font-size:18px;
-    }
-
-    .form{
-        grid-template-columns:1fr;
-    }
-
-    .item{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .acoes{
-        width:100%;
-    }
-
-    .acoes button{
-        flex:1;
-    }
-
-    .meta h2{
-        font-size:32px;
-    }
-
-    .meta-info{
-        flex-direction:column;
-        gap:5px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>💰 Minha Meta Financeira</h1>
-    <p>Descubra quanto precisa fazer por dia</p>
-</header>
-
-<div class="container">
-
-    <div class="mes">
-        <strong>📅 Mês de controle</strong><br>
-        <input type="month" id="mes">
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <span>🏠 Despesas fixas</span>
-            <h2 class="vermelho" id="fixasTotal">R$ 0,00</h2>
-        </div>
-
-        <div class="card">
-            <span>🧾 Despesas do mês</span>
-            <h2 class="laranja" id="diariasTotal">R$ 0,00</h2>
-        </div>
-
-        <div class="card">
-            <span>💳 Dívidas restantes</span>
-            <h2 class="vermelho" id="dividasTotal">R$ 0,00</h2>
-        </div>
-
-        <div class="card">
-            <span>💰 Entradas</span>
-            <h2 class="verde" id="entradasTotal">R$ 0,00</h2>
-        </div>
-
-    </div>
-
-    <div class="meta">
-
-        <small>🎯 VOCÊ PRECISA FAZER POR DIA</small>
-
-        <h2 id="meta">R$ 0,00</h2>
-
-        <div class="progress">
-            <div id="barra"></div>
-        </div>
-
-        <div class="meta-info">
-
-            <span id="conseguido">
-                Conseguido: R$ 0,00
-            </span>
-
-            <span id="faltando">
-                Falta: R$ 0,00
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="tabs">
-
-        <button class="active" onclick="aba('resumo',this)">
-            📊 Resumo
-        </button>
-
-        <button onclick="aba('diario',this)">
-            📅 Diário
-        </button>
-
-        <button onclick="aba('entradas',this)">
-            💰 Entradas
-        </button>
-
-        <button onclick="aba('fixas',this)">
-            🏠 Fixas
-        </button>
-
-        <button onclick="aba('diarias',this)">
-            🧾 Despesas
-        </button>
-
-        <button onclick="aba('dividas',this)">
-            💳 Dívidas
-        </button>
-
-    </div>
-
-    <!-- RESUMO -->
-
-    <div id="resumo" class="section active">
-
-        <div class="box">
-
-            <h3>📊 Como está sua situação?</h3>
-
-            <p id="mensagem" style="line-height:1.7;color:#475569">
-                Adicione suas despesas e valores no controle diário para começar.
-            </p>
-
-        </div>
-
-    </div>
-
-    <!-- DIÁRIO -->
-
-    <div id="diario" class="section">
-
-        <div class="diario-resumo">
-
-            <div class="diario-card">
-                <span>🎯 Total das metas</span>
-                <strong id="totalMetas">R$ 0,00</strong>
-            </div>
-
-            <div class="diario-card">
-                <span>💰 Total feito</span>
-                <strong class="verde" id="diarioTotal">R$ 0,00</strong>
-            </div>
-
-            <div class="diario-card">
-                <span>📊 Diferença total</span>
-                <strong id="diferencaTotal">R$ 0,00</strong>
-            </div>
-
-        </div>
-
-        <div class="diario-resumo">
-
-            <div class="diario-card">
-                <span>✅ Metas atingidas</span>
-                <strong class="verde" id="diasMeta">0</strong>
-            </div>
-
-            <div class="diario-card">
-                <span>❌ Metas não atingidas</span>
-                <strong class="vermelho" id="diasAbaixo">0</strong>
-            </div>
-
-            <div class="diario-card">
-                <span>📅 Dias preenchidos</span>
-                <strong id="diasPreenchidos">0</strong>
-            </div>
-
-        </div>
-
-        <div class="box">
-
-            <h3>📅 Controle diário</h3>
-
-            <div class="dica-diario">
-                <strong>Como usar:</strong><br>
-                Em cada dia, coloque a <strong>meta que você quer fazer</strong>
-                e depois coloque quanto você <strong>realmente fez</strong>.
-                O sistema mostrará automaticamente a diferença.
-            </div>
-
-            <div class="tabela-container">
-
-                <table class="tabela-diario">
-
-                    <thead>
-
-                        <tr>
-                            <th>Dia</th>
-                            <th>🎯 Meta do dia</th>
-                            <th>💰 Fiz no dia</th>
-                            <th>Diferença</th>
-                            <th>Situação</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="tabelaDiario"></tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ENTRADAS -->
-
-    <div id="entradas" class="section">
-
-        <div class="box">
-
-            <h3>💰 Nova entrada</h3>
-
-            <div class="form">
-
-                <input id="entradaDescricao" placeholder="Descrição">
-
-                <input id="entradaValor" type="number" step="0.01" placeholder="Valor">
-
-                <input id="entradaData" type="date">
-
-                <button class="btn" onclick="addEntrada()">
-                    + Adicionar
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="listaEntradas" class="lista"></div>
-
-    </div>
-
-    <!-- FIXAS -->
-
-    <div id="fixas" class="section">
-
-        <div class="box">
-
-            <h3>🏠 Nova despesa fixa</h3>
-
-            <div class="form">
-
-                <input id="fixaNome" placeholder="Ex: Aluguel">
-
-                <input id="fixaValor" type="number" step="0.01" placeholder="Valor">
-
-                <input id="fixaVencimento" type="number" min="1" max="31" placeholder="Dia vencimento">
-
-                <button class="btn" onclick="addFixa()">
-                    + Adicionar
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="listaFixas" class="lista"></div>
-
-    </div>
-
-    <!-- DIÁRIAS -->
-
-    <div id="diarias" class="section">
-
-        <div class="box">
-
-            <h3>🧾 Nova despesa</h3>
-
-            <div class="form">
-
-                <input id="diariaDescricao" placeholder="Ex: Mercado">
-
-                <input id="diariaValor" type="number" step="0.01" placeholder="Valor">
-
-                <input id="diariaData" type="date">
-
-                <select id="diariaCategoria">
-
-                    <option>Alimentação</option>
-                    <option>Mercado</option>
-                    <option>Combustível</option>
-                    <option>Transporte</option>
-                    <option>Casa</option>
-                    <option>Lazer</option>
-                    <option>Outros</option>
-
-                </select>
-
-                <button class="btn" onclick="addDiaria()">
-                    + Adicionar
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="listaDiarias" class="lista"></div>
-
-    </div>
-
-    <!-- DIVIDAS -->
-
-    <div id="dividas" class="section">
-
-        <div class="box">
-
-            <h3>💳 Nova dívida</h3>
-
-            <div class="form">
-
-                <input id="dividaNome" placeholder="Ex: Cartão">
-
-                <input id="dividaValor" type="number" step="0.01" placeholder="Valor total">
-
-                <input id="dividaPago" type="number" step="0.01" placeholder="Valor já pago">
-
-                <input id="dividaVencimento" type="date">
-
-                <button class="btn" onclick="addDivida()">
-                    + Adicionar
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="listaDividas" class="lista"></div>
-
-    </div>
-
-</div>
-
-<footer>
-    Minha Meta Financeira © 2026
-</footer>
-
-<div class="status" id="status">
-    ☁️ Conectando...
-</div>
-
-
-<script type="module">
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    deleteDoc,
-    updateDoc,
-    doc,
-    onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-/* FIREBASE */
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
-
-    authDomain: "financas-3ca07.firebaseapp.com",
-
-    projectId: "financas-3ca07",
-
-    storageBucket: "financas-3ca07.firebasestorage.app",
-
-    messagingSenderId: "1049971527541",
-
-    appId: "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
-
-    measurementId: "G-XB06NHKWFX"
-
-};
-
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
-/* CAMINHO */
-
-const BASE = "usuarios/usuario-pessoal";
-
-const col = nome =>
-    collection(db,BASE,nome);
-
-
-let dados = {
-
-    entradas:[],
-    fixas:[],
-    diarias:[],
-    dividas:[],
-    diario:[]
-
-};
-
-
-/* MÊS */
-
-const mesInput =
-    document.getElementById("mes");
-
-const agora =
-    new Date();
-
-mesInput.value =
-    agora.getFullYear()+"-"+
-    String(agora.getMonth()+1).padStart(2,"0");
-
-
-const hoje =
-    agora.toISOString().split("T")[0];
-
-document.getElementById("entradaData").value = hoje;
-document.getElementById("diariaData").value = hoje;
-
-
-/* STATUS */
-
-function status(texto,erro=false){
-
-    const el =
-        document.getElementById("status");
-
-    el.textContent = texto;
-
-    el.style.background =
-        erro ? "#dc2626" : "#16a34a";
-
-}
-
-
-/* MOEDA */
-
-function dinheiro(valor){
-
-    return Number(valor || 0)
-        .toLocaleString(
-            "pt-BR",
-            {
-                style:"currency",
-                currency:"BRL"
-            }
-        );
-
-}
-
-
-/* ABAS */
-
-window.aba = function(id,botao){
-
-    document
-        .querySelectorAll(".section")
-        .forEach(x =>
-            x.classList.remove("active")
-        );
-
-    document
-        .querySelectorAll(".tabs button")
-        .forEach(x =>
-            x.classList.remove("active")
-        );
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-    botao.classList.add("active");
-
-};
-
-
-/* ENTRADA */
-
-window.addEntrada = async function(){
-
-    const descricao =
-        document.getElementById(
-            "entradaDescricao"
-        ).value.trim();
-
-    const valor =
-        Number(
-            document.getElementById(
-                "entradaValor"
-            ).value
-        );
-
-    const data =
-        document.getElementById(
-            "entradaData"
-        ).value;
-
-    if(!descricao || valor<=0 || !data){
-
-        alert("Preencha todos os campos.");
-
-        return;
-
-    }
-
-    try{
-
-        await addDoc(
-            col("entradas"),
-            {
-                descricao,
-                valor,
-                data,
-                criadoEm:Date.now()
-            }
-        );
-
-        document.getElementById(
-            "entradaDescricao"
-        ).value="";
-
-        document.getElementById(
-            "entradaValor"
-        ).value="";
-
-        status("☁️ Entrada salva!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status("Erro ao salvar",true);
-
-        alert(
-            "Erro ao salvar. Verifique as regras do Firestore."
-        );
-
-    }
-
-};
-
-
-/* FIXA */
-
-window.addFixa = async function(){
-
-    const nome =
-        document.getElementById(
-            "fixaNome"
-        ).value.trim();
-
-    const valor =
-        Number(
-            document.getElementById(
-                "fixaValor"
-            ).value
-        );
-
-    const vencimento =
-        document.getElementById(
-            "fixaVencimento"
-        ).value;
-
-    if(!nome || valor<=0){
-
-        alert("Informe nome e valor.");
-
-        return;
-
-    }
-
-    try{
-
-        await addDoc(
-            col("fixas"),
-            {
-                nome,
-                valor,
-                vencimento,
-                pago:false,
-                criadoEm:Date.now()
-            }
-        );
-
-        document.getElementById(
-            "fixaNome"
-        ).value="";
-
-        document.getElementById(
-            "fixaValor"
-        ).value="";
-
-        document.getElementById(
-            "fixaVencimento"
-        ).value="";
-
-        status("☁️ Despesa fixa salva!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status("Erro ao salvar",true);
-
-    }
-
-};
-
-
-/* DIÁRIA */
-
-window.addDiaria = async function(){
-
-    const descricao =
-        document.getElementById(
-            "diariaDescricao"
-        ).value.trim();
-
-    const valor =
-        Number(
-            document.getElementById(
-                "diariaValor"
-            ).value
-        );
-
-    const data =
-        document.getElementById(
-            "diariaData"
-        ).value;
-
-    const categoria =
-        document.getElementById(
-            "diariaCategoria"
-        ).value;
-
-    if(!descricao || valor<=0 || !data){
-
-        alert("Preencha todos os campos.");
-
-        return;
-
-    }
-
-    try{
-
-        await addDoc(
-            col("diarias"),
-            {
-                descricao,
-                valor,
-                data,
-                categoria,
-                criadoEm:Date.now()
-            }
-        );
-
-        document.getElementById(
-            "diariaDescricao"
-        ).value="";
-
-        document.getElementById(
-            "diariaValor"
-        ).value="";
-
-        status("☁️ Despesa salva!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status("Erro ao salvar",true);
-
-    }
-
-};
-
-
-/* DÍVIDA */
-
-window.addDivida = async function(){
-
-    const nome =
-        document.getElementById(
-            "dividaNome"
-        ).value.trim();
-
-    const valor =
-        Number(
-            document.getElementById(
-                "dividaValor"
-            ).value
-        );
-
-    const pago =
-        Number(
-            document.getElementById(
-                "dividaPago"
-            ).value
-        ) || 0;
-
-    const vencimento =
-        document.getElementById(
-            "dividaVencimento"
-        ).value;
-
-    if(!nome || valor<=0){
-
-        alert("Informe nome e valor.");
-
-        return;
-
-    }
-
-    try{
-
-        await addDoc(
-            col("dividas"),
-            {
-                nome,
-                valor,
-                pago,
-                vencimento,
-                criadoEm:Date.now()
-            }
-        );
-
-        document.getElementById(
-            "dividaNome"
-        ).value="";
-
-        document.getElementById(
-            "dividaValor"
-        ).value="";
-
-        document.getElementById(
-            "dividaPago"
-        ).value="";
-
-        document.getElementById(
-            "dividaVencimento"
-        ).value="";
-
-        status("☁️ Dívida salva!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status("Erro ao salvar",true);
-
-    }
-
-};
-
-
-/* EXCLUSÃO */
-
-window.excluir = async function(tipo,id){
-
-    if(!confirm("Deseja excluir este registro?"))
-        return;
-
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                BASE,
-                tipo,
-                id
-            )
-        );
-
-        status("🗑️ Registro excluído!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status("Erro ao excluir",true);
-
-    }
-
-};
-
-
-/* PAGAR FIXA */
-
-window.pagarFixa = async function(id,pago){
-
-    try{
-
-        await updateDoc(
-            doc(
-                db,
-                BASE,
-                "fixas",
-                id
-            ),
-            {
-                pago:!pago
-            }
-        );
-
-    }catch(e){
-
-        console.error(e);
-
-    }
-
-};
-
-
-/* PAGAR DÍVIDA */
-
-window.pagarDivida =
-async function(id,valorPago,valorTotal){
-
-    const valor =
-        Number(
-            prompt(
-                "Quanto deseja pagar?",
-                "0"
-            )
-        );
-
-    if(valor<=0)
-        return;
-
-    const novoValor =
-        Math.min(
-            valorPago+valor,
-            valorTotal
-        );
-
-    try{
-
-        await updateDoc(
-            doc(
-                db,
-                BASE,
-                "dividas",
-                id
-            ),
-            {
-                pago:novoValor
-            }
-        );
-
-    }catch(e){
-
-        console.error(e);
-
-    }
-
-};
-
-
-/* SALVAR META E VALOR DO DIA */
-
-window.salvarDiario =
-async function(data,tipo,valor){
-
-    valor =
-        Number(valor) || 0;
-
-    try{
-
-        const existente =
-            dados.diario.find(
-                x =>
-                    x.data === data
-            );
-
-
-        if(existente){
-
-            const atualizacao = {};
-
-            if(tipo === "meta"){
-                atualizacao.meta = valor;
-            }
-
-            if(tipo === "feito"){
-                atualizacao.valor = valor;
-            }
-
-            /*
-               Se os dois campos estiverem zerados,
-               remove o registro.
-            */
-
-            const metaAtual =
-                tipo === "meta"
-                ?
-                valor
-                :
-                Number(existente.meta || 0);
-
-            const feitoAtual =
-                tipo === "feito"
-                ?
-                valor
-                :
-                Number(existente.valor || 0);
-
-
-            if(
-                metaAtual<=0 &&
-                feitoAtual<=0
-            ){
-
-                await deleteDoc(
-                    doc(
-                        db,
-                        BASE,
-                        "diario",
-                        existente.id
-                    )
-                );
-
-                status("🗑️ Dia removido!");
-
-                return;
-            }
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    BASE,
-                    "diario",
-                    existente.id
-                ),
-                atualizacao
-            );
-
-        }else{
-
-            if(valor<=0)
-                return;
-
-
-            const registro = {
-
-                data:data,
-
-                meta:
-                    tipo === "meta"
-                    ? valor
-                    : 0,
-
-                valor:
-                    tipo === "feito"
-                    ? valor
-                    : 0,
-
-                criadoEm:Date.now()
-
-            };
-
-
-            await addDoc(
-                col("diario"),
-                registro
-            );
-
-        }
-
-
-        status("☁️ Dia salvo!");
-
-    }catch(e){
-
-        console.error(e);
-
-        status(
-            "❌ Erro ao salvar",
-            true
-        );
-
-    }
-
-};
-
-
-/* ESCUTAR FIRESTORE */
-
-function ouvir(tipo){
-
-    onSnapshot(
-        col(tipo),
-
-        snapshot=>{
-
-            dados[tipo] =
-                snapshot.docs.map(
-                    d=>({
-                        id:d.id,
-                        ...d.data()
-                    })
-                );
-
-            atualizar();
-
-            status("☁️ Sincronizado");
-
-        },
-
-        erro=>{
-
-            console.error(erro);
-
-            status(
-                "❌ Erro no Firestore",
-                true
-            );
-
-        }
-    );
-
-}
-
-
-ouvir("entradas");
-ouvir("fixas");
-ouvir("diarias");
-ouvir("dividas");
-ouvir("diario");
-
-
-/* ATUALIZAR */
-
-function atualizar(){
-
-    const mes =
-        mesInput.value;
 
 
     const diarias =
@@ -3793,7 +2313,8 @@ function atualizar(){
         )
         .reduce(
             (s,x)=>
-                s+Number(x.valor),
+                s+
+                Number(x.valor||0),
             0
         );
 
@@ -3802,7 +2323,8 @@ function atualizar(){
         dados.fixas
         .reduce(
             (s,x)=>
-                s+Number(x.valor),
+                s+
+                Number(x.valor||0),
             0
         );
 
@@ -3813,35 +2335,21 @@ function atualizar(){
             (s,x)=>
                 s+
                 Math.max(
-                    Number(x.valor)-
+                    Number(x.valor||0)-
                     Number(x.pago||0),
                     0
                 ),
-            0
-        );
-
-
-    const entradas =
-        dados.entradas
-        .filter(
-            x =>
-                x.data &&
-                x.data.startsWith(mes)
-        )
-        .reduce(
-            (s,x)=>
-                s+Number(x.valor),
             0
         );
 
 
     /*
-       TOTAL FEITO NO CONTROLE DIÁRIO
+        O controle diário é usado
+        como valor realizado.
     */
 
     const diarioMes =
-        dados.diario
-        .filter(
+        dados.metasDiarias.filter(
             x =>
                 x.data &&
                 x.data.startsWith(mes)
@@ -3852,14 +2360,10 @@ function atualizar(){
         diarioMes.reduce(
             (s,x)=>
                 s+
-                Number(x.valor||0),
+                Number(x.feito||0),
             0
         );
 
-
-    /*
-       TOTAL NECESSÁRIO
-    */
 
     const total =
         fixas+
@@ -3874,29 +2378,29 @@ function atualizar(){
         );
 
 
-    /*
-       META MÉDIA PARA O TOPO
-    */
+    /* DIAS RESTANTES */
+
+    const partes =
+        mes.split("-");
 
     const ano =
-        Number(
-            mes.split("-")[0]
-        );
+        Number(partes[0]);
 
     const mesNumero =
-        Number(
-            mes.split("-")[1]
-        );
+        Number(partes[1]);
 
-    const ultimo =
+
+    const ultimoDia =
         new Date(
             ano,
             mesNumero,
             0
         ).getDate();
 
+
     const hojeData =
         new Date();
+
 
     let diasRestantes;
 
@@ -3908,7 +2412,7 @@ function atualizar(){
 
         diasRestantes =
             Math.max(
-                ultimo-
+                ultimoDia-
                 hojeData.getDate()+
                 1,
                 1
@@ -3917,12 +2421,12 @@ function atualizar(){
     }else{
 
         diasRestantes =
-            ultimo;
+            ultimoDia;
 
     }
 
 
-    const meta =
+    const metaMedia =
         falta/diasRestantes;
 
 
@@ -3953,7 +2457,7 @@ function atualizar(){
     document.getElementById(
         "meta"
     ).textContent =
-        dinheiro(meta);
+        dinheiro(metaMedia);
 
 
     document.getElementById(
@@ -3972,15 +2476,11 @@ function atualizar(){
 
     const percentual =
         total>0
-        ?
-        Math.min(
-            conseguido/
-            total*
-            100,
+        ? Math.min(
+            conseguido/total*100,
             100
         )
-        :
-        0;
+        : 0;
 
 
     document.getElementById(
@@ -4000,14 +2500,14 @@ function atualizar(){
     }else if(falta===0){
 
         mensagem =
-            "🎉 Parabéns! Você já conseguiu cobrir todo o valor necessário.";
+            "🎉 Parabéns! Você já conseguiu cobrir o valor necessário.";
 
     }else{
 
         mensagem =
             "Você precisa conseguir aproximadamente "+
-            dinheiro(meta)+
-            " por dia para alcançar o valor necessário.";
+            dinheiro(metaMedia)+
+            " por dia para alcançar sua meta.";
 
     }
 
@@ -4020,409 +2520,30 @@ function atualizar(){
 
     renderizar();
 
-    atualizarDiario();
-
 }
 
 
-/* ATUALIZAR CONTROLE DIÁRIO */
-
-function atualizarDiario(){
-
-    const mes =
-        mesInput.value;
-
-
-    const registros =
-        dados.diario
-        .filter(
-            x =>
-                x.data &&
-                x.data.startsWith(mes)
-        );
-
-
-    const totalMetas =
-        registros.reduce(
-            (s,x)=>
-                s+
-                Number(x.meta||0),
-            0
-        );
-
-
-    const totalFeito =
-        registros.reduce(
-            (s,x)=>
-                s+
-                Number(x.valor||0),
-            0
-        );
-
-
-    const diferencaTotal =
-        totalFeito-totalMetas;
-
-
-    const preenchidos =
-        registros.filter(
-            x =>
-                Number(x.meta||0)>0 ||
-                Number(x.valor||0)>0
-        ).length;
-
-
-    const atingiram =
-        registros.filter(
-            x =>
-                Number(x.meta||0)>0 &&
-                Number(x.valor||0)>=Number(x.meta||0)
-        ).length;
-
-
-    const abaixo =
-        registros.filter(
-            x =>
-                Number(x.meta||0)>0 &&
-                Number(x.valor||0)<Number(x.meta||0)
-        ).length;
-
-
-    document.getElementById(
-        "totalMetas"
-    ).textContent =
-        dinheiro(totalMetas);
-
-
-    document.getElementById(
-        "diarioTotal"
-    ).textContent =
-        dinheiro(totalFeito);
-
-
-    const diferencaElemento =
-        document.getElementById(
-            "diferencaTotal"
-        );
-
-
-    diferencaElemento.textContent =
-        dinheiro(
-            diferencaTotal
-        );
-
-
-    diferencaElemento.className =
-        diferencaTotal>=0
-        ?
-        "verde"
-        :
-        "vermelho";
-
-
-    document.getElementById(
-        "diasMeta"
-    ).textContent =
-        atingiram;
-
-
-    document.getElementById(
-        "diasAbaixo"
-    ).textContent =
-        abaixo;
-
-
-    document.getElementById(
-        "diasPreenchidos"
-    ).textContent =
-        preenchidos;
-
-
-    /*
-       TABELA
-    */
-
-    const ano =
-        Number(
-            mes.split("-")[0]
-        );
-
-
-    const mesNumero =
-        Number(
-            mes.split("-")[1]
-        );
-
-
-    const quantidadeDias =
-        new Date(
-            ano,
-            mesNumero,
-            0
-        ).getDate();
-
-
-    const tabela =
-        document.getElementById(
-            "tabelaDiario"
-        );
-
-
-    let html = "";
-
-
-    for(
-        let dia=1;
-        dia<=quantidadeDias;
-        dia++
-    ){
-
-        const data =
-            `${mes}-${String(dia).padStart(2,"0")}`;
-
-
-        const registro =
-            registros.find(
-                x =>
-                    x.data === data
-            );
-
-
-        const meta =
-            registro
-            ?
-            Number(
-                registro.meta||0
-            )
-            :
-            0;
-
-
-        const feito =
-            registro
-            ?
-            Number(
-                registro.valor||0
-            )
-            :
-            0;
-
-
-        const diferenca =
-            feito-meta;
-
-
-        let linhaClasse = "";
-
-        let situacao = `
-            <span class="situacao meta-vazio">
-                ⚪ Preencha os valores
-            </span>
-        `;
-
-        let diferencaHTML = "—";
-
-
-        /*
-           Meta não preenchida
-        */
-
-        if(meta<=0){
-
-            if(feito>0){
-
-                situacao = `
-                    <span class="situacao meta-vazio">
-                        🎯 Defina a meta
-                    </span>
-                `;
-
-            }
-
-        }
-
-        /*
-           Meta preenchida
-        */
-
-        else{
-
-            if(feito<=0){
-
-                situacao = `
-                    <span class="situacao meta-nao">
-                        ❌ Ainda não feito
-                    </span>
-                `;
-
-                diferencaHTML = `
-                    <span class="vermelho">
-                        Falta ${dinheiro(meta)}
-                    </span>
-                `;
-
-                linhaClasse =
-                    "linha-nao";
-
-            }
-
-            else if(feito<meta){
-
-                const falta =
-                    meta-feito;
-
-                situacao = `
-                    <span class="situacao meta-nao">
-                        ❌ Abaixo da meta
-                    </span>
-                `;
-
-                diferencaHTML = `
-                    <span class="vermelho">
-                        Falta ${dinheiro(falta)}
-                    </span>
-                `;
-
-                linhaClasse =
-                    "linha-nao";
-
-            }
-
-            else if(feito===meta){
-
-                situacao = `
-                    <span class="situacao meta-exata">
-                        🎯 Meta atingida
-                    </span>
-                `;
-
-                diferencaHTML = `
-                    <span class="meta-exata">
-                        Exatamente a meta
-                    </span>
-                `;
-
-                linhaClasse =
-                    "linha-exata";
-
-            }
-
-            else{
-
-                const passou =
-                    feito-meta;
-
-                situacao = `
-                    <span class="situacao meta-ok">
-                        ✅ Meta ultrapassada
-                    </span>
-                `;
-
-                diferencaHTML = `
-                    <span class="verde">
-                        Passou ${dinheiro(passou)}
-                    </span>
-                `;
-
-                linhaClasse =
-                    "linha-ok";
-
-            }
-
-        }
-
-
-        html += `
-
-        <tr class="${linhaClasse}">
-
-            <td class="dia-numero">
-
-                ${String(dia).padStart(2,"0")}/
-                ${String(mesNumero).padStart(2,"0")}
-
-            </td>
-
-
-            <td>
-
-                <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${meta || ""}"
-                    placeholder="Meta"
-                    onchange="
-                        salvarDiario(
-                            '${data}',
-                            'meta',
-                            this.value
-                        )
-                    "
-                >
-
-            </td>
-
-
-            <td>
-
-                <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${feito || ""}"
-                    placeholder="Quanto fez"
-                    onchange="
-                        salvarDiario(
-                            '${data}',
-                            'feito',
-                            this.value
-                        )
-                    "
-                >
-
-            </td>
-
-
-            <td class="diferenca">
-
-                ${diferencaHTML}
-
-            </td>
-
-
-            <td>
-
-                ${situacao}
-
-            </td>
-
-        </tr>
-
-        `;
-
-    }
-
-
-    tabela.innerHTML =
-        html;
-
-}
-
+/* MUDAR MÊS */
 
 mesInput.addEventListener(
     "change",
-    atualizar
+    function(){
+
+        atualizar();
+
+        renderCalendario();
+
+    }
 );
 
 
-/* RENDER */
+/* RENDERIZAR LISTAS */
 
 function renderizar(){
 
     /* ENTRADAS */
 
-    const le =
+    const listaEntradas =
         document.getElementById(
             "listaEntradas"
         );
@@ -4446,18 +2567,18 @@ function renderizar(){
         );
 
 
-    le.innerHTML =
+    listaEntradas.innerHTML =
         entradas.length
         ?
-        entradas.map(
-            x => `
+
+        entradas.map(x=>`
 
             <div class="item">
 
                 <div class="info">
 
                     <strong>
-                        ${x.descricao}
+                        ${escapar(x.descricao)}
                     </strong>
 
                     <small>
@@ -4467,90 +2588,97 @@ function renderizar(){
                 </div>
 
                 <div class="valor verde">
+
                     + ${dinheiro(x.valor)}
+
                 </div>
 
                 <button
                     class="excluir"
-                    onclick="
-                        excluir(
-                            'entradas',
-                            '${x.id}'
-                        )
-                    ">
+                    onclick="excluir(
+                        'entradas',
+                        '${x.id}'
+                    )">
+
                     🗑️
+
                 </button>
 
             </div>
 
-            `
-        ).join("")
+        `).join("")
+
         :
-        `
-        <div class="vazio">
+
+        `<div class="vazio">
             Nenhuma entrada neste mês.
-        </div>
-        `;
+        </div>`;
 
 
     /* FIXAS */
 
-    const lf =
+    const listaFixas =
         document.getElementById(
             "listaFixas"
         );
 
 
-    lf.innerHTML =
+    listaFixas.innerHTML =
         dados.fixas.length
         ?
-        dados.fixas.map(
-            x => `
+
+        dados.fixas.map(x=>`
 
             <div class="item">
 
                 <div class="info">
 
                     <strong>
-                        ${x.nome}
+                        ${escapar(x.nome)}
                     </strong>
 
                     <small>
+
                         Vencimento:
-                        dia ${x.vencimento||"-"}
+                        dia ${x.vencimento || "-"}
+
                         ·
-                        ${x.pago ? "Pago" : "Pendente"}
+
+                        ${x.pago
+                            ? "Pago"
+                            : "Pendente"}
+
                     </small>
 
                 </div>
 
                 <div class="valor">
+
                     ${dinheiro(x.valor)}
+
                 </div>
 
                 <div class="acoes">
 
                     <button
                         class="pagar"
-                        onclick="
-                            pagarFixa(
-                                '${x.id}',
-                                ${x.pago}
-                            )
-                        ">
+                        onclick="pagarFixa(
+                            '${x.id}',
+                            ${Boolean(x.pago)}
+                        )">
 
-                        ${x.pago ? "Desmarcar" : "Pagar"}
+                        ${x.pago
+                            ? "Desmarcar"
+                            : "Pagar"}
 
                     </button>
 
                     <button
                         class="excluir"
-                        onclick="
-                            excluir(
-                                'fixas',
-                                '${x.id}'
-                            )
-                        ">
+                        onclick="excluir(
+                            'fixas',
+                            '${x.id}'
+                        )">
 
                         🗑️
 
@@ -4560,19 +2688,18 @@ function renderizar(){
 
             </div>
 
-            `
-        ).join("")
+        `).join("")
+
         :
-        `
-        <div class="vazio">
+
+        `<div class="vazio">
             Nenhuma despesa fixa.
-        </div>
-        `;
+        </div>`;
 
 
-    /* DIÁRIAS */
+    /* DESPESAS */
 
-    const ld =
+    const listaDiarias =
         document.getElementById(
             "listaDiarias"
         );
@@ -4596,40 +2723,44 @@ function renderizar(){
         );
 
 
-    ld.innerHTML =
+    listaDiarias.innerHTML =
         diarias.length
         ?
-        diarias.map(
-            x => `
+
+        diarias.map(x=>`
 
             <div class="item">
 
                 <div class="info">
 
                     <strong>
-                        ${x.descricao}
+                        ${escapar(x.descricao)}
                     </strong>
 
                     <small>
-                        ${x.categoria}
+
+                        ${escapar(x.categoria)}
+
                         ·
+
                         ${x.data}
+
                     </small>
 
                 </div>
 
                 <div class="valor laranja">
+
                     ${dinheiro(x.valor)}
+
                 </div>
 
                 <button
                     class="excluir"
-                    onclick="
-                        excluir(
-                            'diarias',
-                            '${x.id}'
-                        )
-                    ">
+                    onclick="excluir(
+                        'diarias',
+                        '${x.id}'
+                    )">
 
                     🗑️
 
@@ -4637,53 +2768,54 @@ function renderizar(){
 
             </div>
 
-            `
-        ).join("")
+        `).join("")
+
         :
-        `
-        <div class="vazio">
+
+        `<div class="vazio">
             Nenhuma despesa neste mês.
-        </div>
-        `;
+        </div>`;
 
 
     /* DÍVIDAS */
 
-    const ldiv =
+    const listaDividas =
         document.getElementById(
             "listaDividas"
         );
 
 
-    ldiv.innerHTML =
+    listaDividas.innerHTML =
         dados.dividas.length
         ?
-        dados.dividas.map(
-            x => {
 
-                const restante =
-                    Math.max(
-                        Number(x.valor)-
-                        Number(x.pago||0),
-                        0
-                    );
+        dados.dividas.map(x=>{
+
+            const restante =
+                Math.max(
+                    Number(x.valor||0)-
+                    Number(x.pago||0),
+                    0
+                );
 
 
-                return `
+            return `
 
                 <div class="item">
 
                     <div class="info">
 
                         <strong>
-                            ${x.nome}
+                            ${escapar(x.nome)}
                         </strong>
 
                         <small>
 
                             Pago:
                             ${dinheiro(x.pago)}
+
                             ·
+
                             Restante:
                             ${dinheiro(restante)}
 
@@ -4691,39 +2823,32 @@ function renderizar(){
 
                     </div>
 
-
                     <div class="valor vermelho">
 
                         ${dinheiro(restante)}
 
                     </div>
 
-
                     <div class="acoes">
 
                         <button
                             class="pagar"
-                            onclick="
-                                pagarDivida(
-                                    '${x.id}',
-                                    ${Number(x.pago||0)},
-                                    ${Number(x.valor)}
-                                )
-                            ">
+                            onclick="pagarDivida(
+                                '${x.id}',
+                                ${Number(x.pago||0)},
+                                ${Number(x.valor||0)}
+                            )">
 
                             Pagar
 
                         </button>
 
-
                         <button
                             class="excluir"
-                            onclick="
-                                excluir(
-                                    'dividas',
-                                    '${x.id}'
-                                )
-                            ">
+                            onclick="excluir(
+                                'dividas',
+                                '${x.id}'
+                            )">
 
                             🗑️
 
@@ -4733,18 +2858,36 @@ function renderizar(){
 
                 </div>
 
-                `;
+            `;
 
-            }
-        ).join("")
+        }).join("")
+
         :
-        `
-        <div class="vazio">
+
+        `<div class="vazio">
             Nenhuma dívida cadastrada.
-        </div>
-        `;
+        </div>`;
 
 }
+
+
+/* PROTEGER TEXTO */
+
+function escapar(valor){
+
+    return String(valor ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* MOSTRAR CALENDÁRIO AO CARREGAR */
+
+renderCalendario();
 
 </script>
 
