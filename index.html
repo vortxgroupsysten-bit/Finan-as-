@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+.progress{
+    height:13px;
+    background:#374151;
+    border-radius:20px;<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -107,6 +110,2307 @@ header p{
     height:13px;
     background:#374151;
     border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress div{
+    height:100%;
+    width:0;
+    background:#22c55e;
+    transition:.4s;
+}
+
+.meta-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#d1d5db;
+}
+
+.tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:20px;
+}
+
+.tabs button{
+    border:0;
+    padding:12px 15px;
+    border-radius:9px;
+    background:white;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.tabs button.active{
+    background:#111827;
+    color:white;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    margin-bottom:18px;
+    box-shadow:0 3px 12px #0000000c;
+}
+
+.box h3{
+    margin-bottom:15px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#2563eb;
+}
+
+.btn{
+    border:0;
+    background:#2563eb;
+    color:white;
+    border-radius:9px;
+    padding:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* CALENDÁRIO */
+
+.calendario{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 3px 12px #0000000c;
+    margin-bottom:20px;
+}
+
+.calendario-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    gap:10px;
+}
+
+.calendario-topo h3{
+    font-size:18px;
+}
+
+.calendario-resumo{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.resumo-dia{
+    background:#f8fafc;
+    padding:13px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.resumo-dia small{
+    display:block;
+    color:#64748b;
+    margin-bottom:5px;
+}
+
+.calendario-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:7px;
+}
+
+.dia-semana{
+    text-align:center;
+    font-weight:bold;
+    color:#64748b;
+    font-size:12px;
+    padding:8px 2px;
+}
+
+.dia{
+    min-height:135px;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+    padding:9px;
+    background:#fff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.dia:hover{
+    border-color:#2563eb;
+    box-shadow:0 2px 8px #00000010;
+}
+
+.dia.vazio-dia{
+    background:#f8fafc;
+    cursor:default;
+}
+
+.numero-dia{
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.dia input{
+    padding:7px;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.dia label{
+    display:block;
+    font-size:10px;
+    color:#64748b;
+    margin-bottom:2px;
+}
+
+.resultado-dia{
+    font-size:11px;
+    font-weight:bold;
+    margin-top:4px;
+    line-height:1.3;
+}
+
+.faltou{
+    color:#dc2626;
+}
+
+.passou{
+    color:#16a34a;
+}
+
+.bateu{
+    color:#2563eb;
+}
+
+.sem-meta{
+    color:#94a3b8;
+}
+
+.dia.hoje{
+    border:2px solid #2563eb;
+}
+
+.lista{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.item{
+    background:white;
+    padding:16px;
+    border-radius:13px;
+    box-shadow:0 2px 8px #0000000b;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.info strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.info small{
+    color:#64748b;
+}
+
+.valor{
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.acoes{
+    display:flex;
+    gap:6px;
+}
+
+.excluir{
+    border:0;
+    background:#fee2e2;
+    color:#dc2626;
+    padding:9px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.pagar{
+    border:0;
+    background:#dcfce7;
+    color:#15803d;
+    padding:9px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.vazio{
+    background:white;
+    padding:30px;
+    text-align:center;
+    color:#64748b;
+    border-radius:13px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+    font-size:13px;
+}
+
+.status{
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    background:#16a34a;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    font-size:12px;
+    z-index:999;
+}
+
+@media(max-width:800px){
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .calendario-grid{
+        gap:4px;
+    }
+
+    .dia{
+        min-height:125px;
+        padding:6px;
+    }
+
+    .calendario-resumo{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:12px;
+    }
+
+    .cards{
+        gap:9px;
+    }
+
+    .card{
+        padding:14px;
+    }
+
+    .card h2{
+        font-size:18px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .item{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .acoes{
+        width:100%;
+    }
+
+    .acoes button{
+        flex:1;
+    }
+
+    .meta h2{
+        font-size:32px;
+    }
+
+    .meta-info{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .calendario{
+        padding:10px;
+    }
+
+    .calendario-grid{
+        grid-template-columns:repeat(7, minmax(45px,1fr));
+        overflow-x:auto;
+    }
+
+    .calendario{
+        overflow-x:auto;
+    }
+
+    .calendario-grid{
+        width:700px;
+    }
+
+    .calendario-resumo{
+        grid-template-columns:1fr;
+    }
+
+    .calendario-topo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💰 Minha Meta Financeira</h1>
+    <p>Descubra quanto precisa fazer por dia</p>
+</header>
+
+<div class="container">
+
+    <div class="mes">
+        <strong>📅 Mês de controle</strong><br>
+        <input type="month" id="mes">
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>🏠 Despesas fixas</span>
+            <h2 class="vermelho" id="fixasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>🧾 Despesas do mês</span>
+            <h2 class="laranja" id="diariasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>💳 Dívidas restantes</span>
+            <h2 class="vermelho" id="dividasTotal">R$ 0,00</h2>
+        </div>
+
+        <div class="card">
+            <span>💰 Entradas</span>
+            <h2 class="verde" id="entradasTotal">R$ 0,00</h2>
+        </div>
+
+    </div>
+
+    <div class="meta">
+
+        <small>🎯 VOCÊ PRECISA FAZER POR DIA</small>
+
+        <h2 id="meta">R$ 0,00</h2>
+
+        <div class="progress">
+            <div id="barra"></div>
+        </div>
+
+        <div class="meta-info">
+
+            <span id="conseguido">
+                Conseguido: R$ 0,00
+            </span>
+
+            <span id="faltando">
+                Falta: R$ 0,00
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="tabs">
+
+        <button class="active" onclick="aba('resumo',this)">
+            📊 Resumo
+        </button>
+
+        <button onclick="aba('calendario',this)">
+            📅 Metas diárias
+        </button>
+
+        <button onclick="aba('entradas',this)">
+            💰 Entradas
+        </button>
+
+        <button onclick="aba('fixas',this)">
+            🏠 Fixas
+        </button>
+
+        <button onclick="aba('diarias',this)">
+            🧾 Despesas
+        </button>
+
+        <button onclick="aba('dividas',this)">
+            💳 Dívidas
+        </button>
+
+    </div>
+
+    <!-- RESUMO -->
+
+    <div id="resumo" class="section active">
+
+        <div class="box">
+
+            <h3>📊 Como está sua situação?</h3>
+
+            <p id="mensagem" style="line-height:1.7;color:#475569">
+                Adicione suas despesas e entradas para começar.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- CALENDÁRIO -->
+
+    <div id="calendario" class="section">
+
+        <div class="calendario">
+
+            <div class="calendario-topo">
+
+                <h3>📅 Minha meta diária</h3>
+
+                <strong id="mesCalendario">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="calendario-resumo">
+
+                <div class="resumo-dia">
+                    <small>🎯 Meta total</small>
+                    <strong id="metaTotalMes">R$ 0,00</strong>
+                </div>
+
+                <div class="resumo-dia">
+                    <small>💰 Total feito</small>
+                    <strong id="feitoTotalMes" class="verde">R$ 0,00</strong>
+                </div>
+
+                <div class="resumo-dia">
+                    <small>📊 Resultado</small>
+                    <strong id="resultadoTotalMes">R$ 0,00</strong>
+                </div>
+
+            </div>
+
+            <div class="calendario-grid">
+
+                <div class="dia-semana">DOM</div>
+                <div class="dia-semana">SEG</div>
+                <div class="dia-semana">TER</div>
+                <div class="dia-semana">QUA</div>
+                <div class="dia-semana">QUI</div>
+                <div class="dia-semana">SEX</div>
+                <div class="dia-semana">SÁB</div>
+
+            </div>
+
+            <div
+                class="calendario-grid"
+                id="diasCalendario">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ENTRADAS -->
+
+    <div id="entradas" class="section">
+
+        <div class="box">
+
+            <h3>💰 Nova entrada</h3>
+
+            <div class="form">
+
+                <input
+                    id="entradaDescricao"
+                    placeholder="Descrição">
+
+                <input
+                    id="entradaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="entradaData"
+                    type="date">
+
+                <button class="btn" onclick="addEntrada()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaEntradas" class="lista"></div>
+
+    </div>
+
+    <!-- FIXAS -->
+
+    <div id="fixas" class="section">
+
+        <div class="box">
+
+            <h3>🏠 Nova despesa fixa</h3>
+
+            <div class="form">
+
+                <input
+                    id="fixaNome"
+                    placeholder="Ex: Aluguel">
+
+                <input
+                    id="fixaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="fixaVencimento"
+                    type="number"
+                    min="1"
+                    max="31"
+                    placeholder="Dia vencimento">
+
+                <button class="btn" onclick="addFixa()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaFixas" class="lista"></div>
+
+    </div>
+
+    <!-- DIÁRIAS -->
+
+    <div id="diarias" class="section">
+
+        <div class="box">
+
+            <h3>🧾 Nova despesa</h3>
+
+            <div class="form">
+
+                <input
+                    id="diariaDescricao"
+                    placeholder="Ex: Mercado">
+
+                <input
+                    id="diariaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor">
+
+                <input
+                    id="diariaData"
+                    type="date">
+
+                <select id="diariaCategoria">
+
+                    <option>Alimentação</option>
+                    <option>Mercado</option>
+                    <option>Combustível</option>
+                    <option>Transporte</option>
+                    <option>Casa</option>
+                    <option>Lazer</option>
+                    <option>Outros</option>
+
+                </select>
+
+                <button class="btn" onclick="addDiaria()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaDiarias" class="lista"></div>
+
+    </div>
+
+    <!-- DIVIDAS -->
+
+    <div id="dividas" class="section">
+
+        <div class="box">
+
+            <h3>💳 Nova dívida</h3>
+
+            <div class="form">
+
+                <input
+                    id="dividaNome"
+                    placeholder="Ex: Cartão">
+
+                <input
+                    id="dividaValor"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor total">
+
+                <input
+                    id="dividaPago"
+                    type="number"
+                    step="0.01"
+                    placeholder="Valor já pago">
+
+                <input
+                    id="dividaVencimento"
+                    type="date">
+
+                <button class="btn" onclick="addDivida()">
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="listaDividas" class="lista"></div>
+
+    </div>
+
+</div>
+
+<footer>
+    Minha Meta Financeira © 2026
+</footer>
+
+<div class="status" id="status">
+    ☁️ Conectando...
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+    onSnapshot,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBR9En-VvtdBMXmf3RV5GfEW8dAK990XLA",
+
+    authDomain: "financas-3ca07.firebaseapp.com",
+
+    projectId: "financas-3ca07",
+
+    storageBucket: "financas-3ca07.firebasestorage.app",
+
+    messagingSenderId: "1049971527541",
+
+    appId: "1:1049971527541:web:0e4f8c4d6ef879c7a04d3c",
+
+    measurementId: "G-XB06NHKWFX"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/*
+    USUÁRIO PESSOAL
+
+    Tudo ficará salvo dentro deste caminho.
+*/
+
+const BASE = "usuarios/usuario-pessoal";
+
+
+const col = nome =>
+    collection(db,BASE,nome);
+
+
+let dados = {
+
+    entradas:[],
+    fixas:[],
+    diarias:[],
+    dividas:[],
+    metasDiarias:[]
+
+};
+
+
+/* MÊS */
+
+const mesInput =
+    document.getElementById("mes");
+
+const agora = new Date();
+
+mesInput.value =
+    agora.getFullYear()+"-"+
+    String(agora.getMonth()+1).padStart(2,"0");
+
+
+const hoje =
+    agora.getFullYear()+"-"+
+    String(agora.getMonth()+1).padStart(2,"0")+"-"+
+    String(agora.getDate()).padStart(2,"0");
+
+
+document.getElementById("entradaData").value = hoje;
+document.getElementById("diariaData").value = hoje;
+
+
+/* STATUS */
+
+function status(texto,erro=false){
+
+    const el =
+        document.getElementById("status");
+
+    el.textContent = texto;
+
+    el.style.background =
+        erro ? "#dc2626" : "#16a34a";
+
+}
+
+
+/* MOEDA */
+
+function dinheiro(valor){
+
+    return Number(valor || 0)
+        .toLocaleString(
+            "pt-BR",
+            {
+                style:"currency",
+                currency:"BRL"
+            }
+        );
+
+}
+
+
+/* ABAS */
+
+window.aba = function(id,botao){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(x =>
+            x.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".tabs button")
+        .forEach(x =>
+            x.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    botao.classList.add("active");
+
+    if(id==="calendario"){
+        renderCalendario();
+    }
+
+};
+
+
+/* ENTRADA */
+
+window.addEntrada = async function(){
+
+    const descricao =
+        document.getElementById(
+            "entradaDescricao"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "entradaValor"
+            ).value
+        );
+
+    const data =
+        document.getElementById(
+            "entradaData"
+        ).value;
+
+    if(!descricao || valor<=0 || !data){
+
+        alert("Preencha todos os campos.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("entradas"),
+            {
+                descricao,
+                valor,
+                data,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "entradaDescricao"
+        ).value="";
+
+        document.getElementById(
+            "entradaValor"
+        ).value="";
+
+        status("☁️ Entrada salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+        alert(
+            "Erro ao salvar. Verifique as regras do Firestore."
+        );
+
+    }
+
+};
+
+
+/* FIXA */
+
+window.addFixa = async function(){
+
+    const nome =
+        document.getElementById(
+            "fixaNome"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "fixaValor"
+            ).value
+        );
+
+    const vencimento =
+        document.getElementById(
+            "fixaVencimento"
+        ).value;
+
+    if(!nome || valor<=0){
+
+        alert("Informe nome e valor.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("fixas"),
+            {
+                nome,
+                valor,
+                vencimento,
+                pago:false,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "fixaNome"
+        ).value="";
+
+        document.getElementById(
+            "fixaValor"
+        ).value="";
+
+        document.getElementById(
+            "fixaVencimento"
+        ).value="";
+
+        status("☁️ Despesa fixa salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* DIÁRIA */
+
+window.addDiaria = async function(){
+
+    const descricao =
+        document.getElementById(
+            "diariaDescricao"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "diariaValor"
+            ).value
+        );
+
+    const data =
+        document.getElementById(
+            "diariaData"
+        ).value;
+
+    const categoria =
+        document.getElementById(
+            "diariaCategoria"
+        ).value;
+
+    if(!descricao || valor<=0 || !data){
+
+        alert("Preencha todos os campos.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("diarias"),
+            {
+                descricao,
+                valor,
+                data,
+                categoria,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "diariaDescricao"
+        ).value="";
+
+        document.getElementById(
+            "diariaValor"
+        ).value="";
+
+        status("☁️ Despesa salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* DÍVIDA */
+
+window.addDivida = async function(){
+
+    const nome =
+        document.getElementById(
+            "dividaNome"
+        ).value.trim();
+
+    const valor =
+        Number(
+            document.getElementById(
+                "dividaValor"
+            ).value
+        );
+
+    const pago =
+        Number(
+            document.getElementById(
+                "dividaPago"
+            ).value
+        ) || 0;
+
+    const vencimento =
+        document.getElementById(
+            "dividaVencimento"
+        ).value;
+
+    if(!nome || valor<=0){
+
+        alert("Informe nome e valor.");
+
+        return;
+
+    }
+
+    try{
+
+        await addDoc(
+            col("dividas"),
+            {
+                nome,
+                valor,
+                pago,
+                vencimento,
+                criadoEm:Date.now()
+            }
+        );
+
+        document.getElementById(
+            "dividaNome"
+        ).value="";
+
+        document.getElementById(
+            "dividaValor"
+        ).value="";
+
+        document.getElementById(
+            "dividaPago"
+        ).value="";
+
+        document.getElementById(
+            "dividaVencimento"
+        ).value="";
+
+        status("☁️ Dívida salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar",true);
+
+    }
+
+};
+
+
+/* EXCLUSÃO */
+
+window.excluir = async function(tipo,id){
+
+    if(!confirm("Deseja excluir este registro?"))
+        return;
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                BASE,
+                tipo,
+                id
+            )
+        );
+
+        status("🗑️ Registro excluído!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao excluir",true);
+
+    }
+
+};
+
+
+/* PAGAR FIXA */
+
+window.pagarFixa = async function(id,pago){
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                BASE,
+                "fixas",
+                id
+            ),
+            {
+                pago:!pago
+            }
+        );
+
+    }catch(e){
+
+        console.error(e);
+
+    }
+
+};
+
+
+/* PAGAR DÍVIDA */
+
+window.pagarDivida = async function(id,valorPago,valorTotal){
+
+    const valor =
+        Number(
+            prompt(
+                "Quanto deseja pagar?",
+                "0"
+            )
+        );
+
+    if(valor<=0)
+        return;
+
+    const novoValor =
+        Math.min(
+            valorPago+valor,
+            valorTotal
+        );
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                BASE,
+                "dividas",
+                id
+            ),
+            {
+                pago:novoValor
+            }
+        );
+
+    }catch(e){
+
+        console.error(e);
+
+    }
+
+};
+
+
+/* =====================================================
+   METAS DIÁRIAS
+===================================================== */
+
+
+/*
+    Cada documento terá o ID igual à data.
+
+    Exemplo:
+
+    usuarios
+      usuario-pessoal
+        metasDiarias
+          2026-09-01
+
+    Campos:
+
+    data
+    meta
+    feito
+*/
+
+async function salvarDia(data,meta,feito){
+
+    try{
+
+        await setDoc(
+            doc(
+                db,
+                BASE,
+                "metasDiarias",
+                data
+            ),
+            {
+                data,
+                meta:Number(meta)||0,
+                feito:Number(feito)||0,
+                atualizadoEm:Date.now()
+            },
+            {
+                merge:true
+            }
+        );
+
+        status("☁️ Meta do dia salva!");
+
+    }catch(e){
+
+        console.error(e);
+
+        status("Erro ao salvar meta",true);
+
+    }
+
+}
+
+
+window.salvarMetaDia = function(data){
+
+    const metaInput =
+        document.getElementById(
+            "meta-"+data
+        );
+
+    const feitoInput =
+        document.getElementById(
+            "feito-"+data
+        );
+
+    if(!metaInput || !feitoInput)
+        return;
+
+    const meta =
+        Number(metaInput.value)||0;
+
+    const feito =
+        Number(feitoInput.value)||0;
+
+    salvarDia(
+        data,
+        meta,
+        feito
+    );
+
+};
+
+
+/*
+    Atualiza o resultado visual
+    do dia sem precisar esperar o Firestore.
+*/
+
+window.atualizarDiaVisual = function(data){
+
+    const metaInput =
+        document.getElementById(
+            "meta-"+data
+        );
+
+    const feitoInput =
+        document.getElementById(
+            "feito-"+data
+        );
+
+    const resultado =
+        document.getElementById(
+            "resultado-"+data
+        );
+
+    if(!metaInput || !feitoInput || !resultado)
+        return;
+
+    const meta =
+        Number(metaInput.value)||0;
+
+    const feito =
+        Number(feitoInput.value)||0;
+
+
+    if(meta<=0){
+
+        resultado.className =
+            "resultado-dia sem-meta";
+
+        resultado.textContent =
+            "Defina sua meta";
+
+        return;
+
+    }
+
+
+    const diferenca =
+        feito-meta;
+
+
+    if(diferenca<0){
+
+        resultado.className =
+            "resultado-dia faltou";
+
+        resultado.textContent =
+            "🔴 Faltou "+dinheiro(Math.abs(diferenca));
+
+    }else if(diferenca>0){
+
+        resultado.className =
+            "resultado-dia passou";
+
+        resultado.textContent =
+            "🟢 Passou "+dinheiro(diferenca);
+
+    }else{
+
+        resultado.className =
+            "resultado-dia bateu";
+
+        resultado.textContent =
+            "🔵 Meta atingida!";
+
+    }
+
+    atualizarResumoCalendario();
+
+};
+
+
+/*
+    Salva automaticamente quando o usuário
+    termina de preencher o campo.
+*/
+
+window.salvarAoSair = function(data){
+
+    salvarMetaDia(
+        data
+    );
+
+};
+
+
+/* RENDERIZAR CALENDÁRIO */
+
+function renderCalendario(){
+
+    const mes =
+        mesInput.value;
+
+    if(!mes)
+        return;
+
+
+    const partes =
+        mes.split("-");
+
+    const ano =
+        Number(partes[0]);
+
+    const mesNumero =
+        Number(partes[1]);
+
+
+    const quantidadeDias =
+        new Date(
+            ano,
+            mesNumero,
+            0
+        ).getDate();
+
+
+    const primeiroDia =
+        new Date(
+            ano,
+            mesNumero-1,
+            1
+        ).getDay();
+
+
+    const nomesMeses = [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+    ];
+
+
+    document.getElementById(
+        "mesCalendario"
+    ).textContent =
+        nomesMeses[mesNumero-1]+" "+ano;
+
+
+    const calendario =
+        document.getElementById(
+            "diasCalendario"
+        );
+
+
+    let html="";
+
+
+    /* ESPAÇOS ANTES DO PRIMEIRO DIA */
+
+    for(
+        let i=0;
+        i<primeiroDia;
+        i++
+    ){
+
+        html+=`
+            <div class="dia vazio-dia"></div>
+        `;
+
+    }
+
+
+    /* DIAS */
+
+    for(
+        let dia=1;
+        dia<=quantidadeDias;
+        dia++
+    ){
+
+        const data =
+            ano+"-"+
+            String(mesNumero).padStart(2,"0")+"-"+
+            String(dia).padStart(2,"0");
+
+
+        const registro =
+            dados.metasDiarias.find(
+                x=>x.id===data
+            );
+
+
+        const meta =
+            registro
+            ? Number(registro.meta)||0
+            : 0;
+
+
+        const feito =
+            registro
+            ? Number(registro.feito)||0
+            : 0;
+
+
+        let resultadoTexto =
+            "Defina sua meta";
+
+        let resultadoClasse =
+            "resultado-dia sem-meta";
+
+
+        if(meta>0){
+
+            const diferenca =
+                feito-meta;
+
+
+            if(diferenca<0){
+
+                resultadoClasse =
+                    "resultado-dia faltou";
+
+                resultadoTexto =
+                    "🔴 Faltou "+
+                    dinheiro(
+                        Math.abs(diferenca)
+                    );
+
+            }else if(diferenca>0){
+
+                resultadoClasse =
+                    "resultado-dia passou";
+
+                resultadoTexto =
+                    "🟢 Passou "+
+                    dinheiro(
+                        diferenca
+                    );
+
+            }else{
+
+                resultadoClasse =
+                    "resultado-dia bateu";
+
+                resultadoTexto =
+                    "🔵 Meta atingida!";
+
+            }
+
+        }
+
+
+        const ehHoje =
+            data===hoje;
+
+
+        html+=`
+
+            <div class="dia ${ehHoje ? "hoje" : ""}">
+
+                <div class="numero-dia">
+                    ${dia}
+                    ${ehHoje ? " • Hoje" : ""}
+                </div>
+
+                <label>
+                    🎯 Meta
+                </label>
+
+                <input
+                    id="meta-${data}"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="R$ 0"
+                    value="${meta || ""}"
+                    oninput="atualizarDiaVisual('${data}')"
+                    onchange="salvarAoSair('${data}')"
+                    onblur="salvarAoSair('${data}')"
+                >
+
+                <label>
+                    💰 Fiz
+                </label>
+
+                <input
+                    id="feito-${data}"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="R$ 0"
+                    value="${feito || ""}"
+                    oninput="atualizarDiaVisual('${data}')"
+                    onchange="salvarAoSair('${data}')"
+                    onblur="salvarAoSair('${data}')"
+                >
+
+                <div
+                    id="resultado-${data}"
+                    class="${resultadoClasse}">
+                    ${resultadoTexto}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    calendario.innerHTML =
+        html;
+
+
+    atualizarResumoCalendario();
+
+}
+
+
+/* RESUMO DO CALENDÁRIO */
+
+function atualizarResumoCalendario(){
+
+    const mes =
+        mesInput.value;
+
+
+    const registros =
+        dados.metasDiarias.filter(
+            x =>
+                x.data &&
+                x.data.startsWith(mes)
+        );
+
+
+    let metaTotal=0;
+    let feitoTotal=0;
+
+
+    registros.forEach(x=>{
+
+        metaTotal +=
+            Number(x.meta)||0;
+
+        feitoTotal +=
+            Number(x.feito)||0;
+
+    });
+
+
+    const resultado =
+        feitoTotal-metaTotal;
+
+
+    document.getElementById(
+        "metaTotalMes"
+    ).textContent =
+        dinheiro(metaTotal);
+
+
+    document.getElementById(
+        "feitoTotalMes"
+    ).textContent =
+        dinheiro(feitoTotal);
+
+
+    const resultadoEl =
+        document.getElementById(
+            "resultadoTotalMes"
+        );
+
+
+    if(resultado<0){
+
+        resultadoEl.className =
+            "vermelho";
+
+        resultadoEl.textContent =
+            "Faltam "+
+            dinheiro(
+                Math.abs(resultado)
+            );
+
+    }else if(resultado>0){
+
+        resultadoEl.className =
+            "verde";
+
+        resultadoEl.textContent =
+            "Passou "+
+            dinheiro(resultado);
+
+    }else{
+
+        resultadoEl.className =
+            "azul";
+
+        resultadoEl.textContent =
+            dinheiro(0);
+
+    }
+
+}
+
+
+/* ESCUTAR FIRESTORE */
+
+function ouvir(tipo){
+
+    onSnapshot(
+        col(tipo),
+        snapshot=>{
+
+            dados[tipo] =
+                snapshot.docs.map(
+                    d=>({
+                        id:d.id,
+                        ...d.data()
+                    })
+                );
+
+            atualizar();
+
+            if(tipo==="metasDiarias"){
+                renderCalendario();
+            }
+
+            status("☁️ Sincronizado");
+
+        },
+        erro=>{
+
+            console.error(erro);
+
+            status(
+                "❌ Erro no Firestore",
+                true
+            );
+
+        }
+    );
+
+}
+
+
+ouvir("entradas");
+ouvir("fixas");
+ouvir("diarias");
+ouvir("dividas");
+ouvir("metasDiarias");
+
+
+/* ATUALIZAR */
+
+function atualizar(){
+
+    const mes =
+        mesInput.value;
+
+
+    const entradas =
+        dados.entradas
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(mes)
+        )
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const diarias =
+        dados.diarias
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(mes)
+        )
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const fixas =
+        dados.fixas
+        .reduce(
+            (s,x)=>s+Number(x.valor),
+            0
+        );
+
+
+    const dividas =
+        dados.dividas
+        .reduce(
+            (s,x)=>
+                s+
+                Math.max(
+                    Number(x.valor)-
+                    Number(x.pago||0),
+                    0
+                ),
+            0
+        );
+
+
+    const total =
+        fixas+
+        diarias+
+        dividas;
+
+
+    const falta =
+        Math.max(
+            total-entradas,
+            0
+        );
+
+
+    /* DIAS */
+
+    const hojeData =
+        new Date();
+
+    const ano =
+        Number(mes.split("-")[0]);
+
+    const mesNumero =
+        Number(mes.split("-")[1]);
+
+
+    let diasRestantes;
+
+
+    if(
+        hojeData.getFullYear()===ano &&
+        hojeData.getMonth()+1===mesNumero
+    ){
+
+        const ultimo =
+            new Date(
+                ano,
+                mesNumero,
+                0
+            ).getDate();
+
+        diasRestantes =
+            Math.max(
+                ultimo-
+                hojeData.getDate()+
+                1,
+                1
+            );
+
+    }else{
+
+        diasRestantes =
+            new Date(
+                ano,
+                mesNumero,
+                0
+            ).getDate();
+
+    }
+
+
+    const meta =
+        falta/diasRestantes;
+
+
+    document.getElementById(
+        "fixasTotal"
+    ).textContent =
+        dinheiro(fixas);
+
+
+    document.getElementById(
+        "diariasTotal"
+    ).textContent =
+        dinheiro(diarias);
+
+
+    document.getElementById(
+        "dividasTotal"
+    ).textContent =
+        dinheiro(dividas);
+
+
+    document.getElementById(
+        "entradasTotal"
+    ).textContent =
+        dinheiro(entradas);
+
+
+    document.getElementById(
+        "meta"
+    ).textContent =
+        dinheiro(meta);
+
+
+    document.getElementById(
+        "conseguido"
+    ).textContent =
+        "Conseguido: "+dinheiro(entradas);
+
+
+    document.getElementById(
+        "faltando"
+    ).textContent =
+        "Falta: "+dinheiro(falta);
+
+
+    const percentual =
+        total>0
+        ? Math.min(
+            entradas/total*100,
+            100
+        )
+        : 0;
+
+
+    document.getElementById(
+        "barra"
+    ).style.width =
+        percentual+"%";
+
+
+    let mensagem;
+
+
+    if(total===0){
+
+        mensagem =
+            "Comece cadastrando suas despesas, dívidas e entradas.";
+
+    }else if(falta===0){
+
+        mensagem =
+            "🎉 Parabéns! Você já conseguiu cobrir o valor necessário deste mês.";
+
+    }else{
+
+        mensagem =
+            "Você precisa conseguir aproximadamente "+
+            dinheiro(meta)+
+            " por dia para alcançar sua meta.";
+
+    }
+
+
+    document.getElementById(
+        "mensagem"
+    ).textContent =
+        mensagem;
+
+
+    renderizar();
+
+}
+
+
+/* RENDER */
+
+function renderizar(){
+
+    /* ENTRADAS */
+
+    const le =
+        document.getElementById(
+            "listaEntradas"
+        );
+
+    const entradas =
+        dados.entradas
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(
+                mesInput.value
+            )
+        )
+        .sort(
+            (a,b)=>
+                (b.data||"")
+                .localeCompare(a.data||"")
+        );
+
+
+    le.innerHTML =
+        entradas.length
+        ?
+        entradas.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.descricao}
+                </strong>
+
+                <small>
+                    ${x.data}
+                </small>
+
+            </div>
+
+            <div class="valor verde">
+                + ${dinheiro(x.valor)}
+            </div>
+
+            <button
+                class="excluir"
+                onclick="excluir('entradas','${x.id}')">
+                🗑️
+            </button>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma entrada neste mês.</div>';
+
+
+    /* FIXAS */
+
+    const lf =
+        document.getElementById(
+            "listaFixas"
+        );
+
+
+    lf.innerHTML =
+        dados.fixas.length
+        ?
+        dados.fixas.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.nome}
+                </strong>
+
+                <small>
+                    Vencimento:
+                    dia ${x.vencimento||"-"}
+                    ·
+                    ${x.pago ? "Pago" : "Pendente"}
+                </small>
+
+            </div>
+
+            <div class="valor">
+                ${dinheiro(x.valor)}
+            </div>
+
+            <div class="acoes">
+
+                <button
+                    class="pagar"
+                    onclick="pagarFixa('${x.id}',${x.pago})">
+                    ${x.pago ? "Desmarcar" : "Pagar"}
+                </button>
+
+                <button
+                    class="excluir"
+                    onclick="excluir('fixas','${x.id}')">
+                    🗑️
+                </button>
+
+            </div>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma despesa fixa.</div>';
+
+
+    /* DIÁRIAS */
+
+    const ld =
+        document.getElementById(
+            "listaDiarias"
+        );
+
+
+    const diarias =
+        dados.diarias
+        .filter(x =>
+            x.data &&
+            x.data.startsWith(
+                mesInput.value
+            )
+        )
+        .sort(
+            (a,b)=>
+                (b.data||"")
+                .localeCompare(a.data||"")
+        );
+
+
+    ld.innerHTML =
+        diarias.length
+        ?
+        diarias.map(x=>`
+
+        <div class="item">
+
+            <div class="info">
+
+                <strong>
+                    ${x.descricao}
+                </strong>
+
+                <small>
+                    ${x.categoria}
+                    ·
+                    ${x.data}
+                </small>
+
+            </div>
+
+            <div class="valor laranja">
+                ${dinheiro(x.valor)}
+            </div>
+
+            <button
+                class="excluir"
+                onclick="excluir('diarias','${x.id}')">
+                🗑️
+            </button>
+
+        </div>
+
+        `).join("")
+        :
+        '<div class="vazio">Nenhuma despesa neste mês.</div>';
+
+
+    /* DÍVIDAS */
+
+    const ldiv =
+        document.getElementById(
+            "listaDividas"
+        );
+
+
+    ldiv.innerHTML =
+        dados.dividas.length
+        ?
+        dados.dividas.map(x=>{
+
+            const restante =
+                Math.max(
+                    Number(x.valor)-
+                    Number(x.pago||0),
+                    0
+                );
+
+
+            return `
+
+            <div class="item">
+
+                <div class="info">
+
+                    <strong>
+                        ${x.nome}
+                    </strong>
+
+                    <small>
+                        Pago:
+                        ${dinheiro(x.pago)}
+                        · Restante:
+                        ${dinheiro(restante)}
+                    </small>
+
+                </div>
+
+                <div class="valor vermelho">
+                    ${dinheiro(restante)}
+                </div>
+
+                <div class="acoes">
+
+                    <button
+                        class="pagar"
+                        onclick="pagarDivida(
+                            '${x.id}',
+                            ${Number(x.pago||0)},
+                            ${Number(x.valor)}
+                        )">
+                        Pagar
+                    </button>
+
+                    <button
+                        class="excluir"
+                        onclick="excluir('dividas','${x.id}')">
+                        🗑️
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("")
+        :
+        '<div class="vazio">Nenhuma dívida cadastrada.</div>';
+
+}
+
+
+/* TROCA DE MÊS */
+
+mesInput.addEventListener(
+    "change",
+    function(){
+
+        atualizar();
+
+        renderCalendario();
+
+    }
+);
+
+
+/* GARANTE QUE O CALENDÁRIO SEJA ATUALIZADO */
+
+setInterval(
+    ()=>{
+        if(
+            document
+            .getElementById("calendario")
+            .classList
+            .contains("active")
+        ){
+            atualizarResumoCalendario();
+        }
+    },
+    1000
+);
+
+</script>
+
+</body>
+</html>
     overflow:hidden;
     margin:15px 0;
 }
