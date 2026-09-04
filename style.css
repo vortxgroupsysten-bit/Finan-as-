@@ -50,3 +50,185 @@ td{font-size:14px}
 .toast{position:fixed;right:22px;bottom:22px;background:#17202a;color:white;padding:11px 15px;border-radius:9px;opacity:0;pointer-events:none;transition:.2s}
 .toast.show{opacity:1}
 @media(max-width:800px){.container{padding:15px}header{align-items:stretch;flex-direction:column}.summary{grid-template-columns:1fr 1fr}.expense-form{grid-template-columns:1fr}.table-header{align-items:flex-start;gap:12px;flex-direction:column}}
+
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px){
+  body{
+    font-size:14px;
+    overflow-x:hidden;
+  }
+
+  .container{
+    width:100%;
+    padding:12px;
+  }
+
+  header{
+    gap:14px;
+    margin-bottom:16px;
+  }
+
+  h1{font-size:24px}
+  header p{font-size:13px}
+
+  .month-box{
+    width:100%;
+  }
+
+  .month-box input{
+    width:100%;
+    min-height:44px;
+  }
+
+  .summary{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-bottom:14px;
+  }
+
+  .card{
+    padding:13px;
+    border-radius:12px;
+  }
+
+  .card span{
+    font-size:11px;
+    margin-bottom:6px;
+  }
+
+  .card strong{
+    font-size:16px;
+    word-break:break-word;
+  }
+
+  .table-card,
+  .expense-panel{
+    border-radius:12px;
+  }
+
+  .table-header{
+    padding:15px;
+  }
+
+  .table-header h2,
+  .expense-panel h2{
+    font-size:18px;
+  }
+
+  .table-header p{
+    font-size:12px;
+    line-height:1.4;
+  }
+
+  .table-header .primary{
+    width:100%;
+    min-height:44px;
+  }
+
+  /* tabela continua utilizável com arraste horizontal */
+  .table-wrap{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+
+  table{
+    min-width:850px;
+  }
+
+  th,td{
+    padding:10px;
+  }
+
+  .money-input{
+    width:105px;
+    min-height:40px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions button{
+    min-height:38px;
+  }
+
+  .expense-panel{
+    margin-top:14px;
+    padding:15px;
+  }
+
+  .panel-title{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .expense-form{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .expense-form input,
+  .expense-form button{
+    width:100%;
+    min-height:44px;
+  }
+
+  .expense-item{
+    align-items:flex-start;
+    gap:10px;
+    padding:11px;
+  }
+
+  .expense-item > div{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+
+  .expense-item button{
+    padding:7px 9px;
+  }
+
+  .toast{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    text-align:center;
+  }
+}
+
+/* ===== MOBILE PEQUENO ===== */
+@media (max-width: 380px){
+  .container{padding:9px}
+
+  h1{font-size:21px}
+
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+
+  .card span{
+    margin:0;
+  }
+
+  .card strong{
+    font-size:16px;
+  }
+
+  .table-header,
+  .expense-panel{
+    padding:12px;
+  }
+}
